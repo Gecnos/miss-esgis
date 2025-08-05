@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 12 juil. 2025 à 13:58
+-- Généré le : mar. 05 août 2025 à 09:44
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.4.7
 
@@ -79,7 +79,7 @@ CREATE TABLE `votes` (
   `id` int(11) NOT NULL,
   `miss_id` int(11) NOT NULL,
   `moyen_paiement` varchar(50) DEFAULT NULL,
-  `montant` decimal(10,2) DEFAULT NULL,
+  `montant` float DEFAULT NULL,
   `timestamp` datetime DEFAULT current_timestamp(),
   `numero_telephone` varchar(20) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
