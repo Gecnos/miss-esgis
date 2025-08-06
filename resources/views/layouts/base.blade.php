@@ -9,12 +9,12 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased bg-gradient-to-br from-pink-50 to-purple-50 min-h-screen flex flex-col">
+<body class="font-sans antialiased bg-gradient-to-br from-custom-pink-50 to-custom-purple-50 min-h-screen flex flex-col">
     <div class="min-h-screen flex flex-col">
         @include('components.header')
 

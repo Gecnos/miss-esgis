@@ -8,8 +8,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
         </div>
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">Vote enregistré avec succès !</h1>
-        <p class="text-gray-700 text-lg mb-6">
+        <h1 class="text-3xl font-bold text-text-gray-900 mb-4">Vote enregistré avec succès !</h1>
+        <p class="text-text-gray-700 text-lg mb-6">
             Merci d'avoir voté pour <span class="font-semibold">{{ $miss->full_name }}</span>. Votre soutien est précieux !
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
