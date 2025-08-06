@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('miss_id')->constrained('misses')->onDelete('cascade');
-            $table->string('voter_email');
-            $table->string('voter_phone')->nullable();
-            $table->decimal('amount', 8, 2); // Amount paid for the vote
-            $table->string('payment_method'); // e.g., 'Mobile Money', 'Credit Card'
-            $table->string('transaction_id')->nullable(); // Payment gateway transaction ID
-            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
-            $table->timestamps();
+            $table->string('moyen_paiement', 50)->nullable();
+            $table->decimal('montant', 10, 2)->nullable();
+            $table->dateTime('timestamp')->useCurrent();
+            $table->string('numero_telephone', 20)->nullable();
+            $table->string('email', 255)->nullable();
+            $table->string('ip_adresse', 50)->nullable();
         });
+
     }
 
     /**

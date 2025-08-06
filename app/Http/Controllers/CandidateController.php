@@ -9,31 +9,34 @@ use Illuminate\Support\Facades\Storage;
 class CandidateController extends Controller
 {
     /**
-     * Display a listing of all active candidates.
+     * Liste toutes les candidates actives.
      */
     public function index()
     {
-        $candidates = Miss::where('status', 'active')->orderBy('first_name')->get();
+        $candidates = Miss::where('statut', 'active')
+            ->orderBy('prenom')
+            ->get();
+
         return view('candidates.index', compact('candidates'));
     }
 
     /**
-     * Display the specified candidate.
+     * Affiche les détails d'une candidate.
      */
     public function show(Miss $miss)
     {
-        // Ensure only active candidates can be viewed publicly
-        if ($miss->status !== 'active') {
+        if ($miss->statut !== 'active') {
             abort(404);
         }
+
         $photos = $miss->medias()->where('type', 'photo')->get();
-        $video = $miss->medias()->where('type', 'video')->first();
+        $video  = $miss->medias()->where('type', 'video')->first();
 
         return view('candidates.show', compact('miss', 'photos', 'video'));
     }
 
     /**
-     * Show the form for creating a new candidate.
+     * Formulaire d'inscription candidate.
      */
     public function create()
     {
@@ -41,37 +44,36 @@ class CandidateController extends Controller
     }
 
     /**
-     * Store a newly created candidate in storage.
+     * Enregistre une nouvelle candidate.
      */
     public function store(Request $request)
     {
         $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'age' => 'required|integer|min:18|max:99',
-            'city' => 'required|string|max:255',
-            'country' => 'required|string|max:255',
-            'phone' => 'nullable|string|max:20',
-            'email' => 'required|string|email|max:255|unique:misses',
-            'main_photo' => 'required|image|max:5120', // Max 5MB
-            'short_presentation' => 'nullable|string|max:500',
+            'nom'   => 'required|string|max:100',
+            'prenom'=> 'required|string|max:100',
+            'age'   => 'required|integer|min:18|max:99',
+            'pays'  => 'required|string|max:100',
+            'telephone' => 'nullable|string|max:20',
+            'email' => 'required|string|email|max:255|unique:misses,email',
+            'photo_principale' => 'required|image|max:5120',
+            'bio'   => 'nullable|string',
         ]);
 
-        $mainPhotoPath = $request->file('main_photo')->store('miss_photos', 'public');
+        // Stockage de la photo
+        $photoPath = $request->file('photo_principale')->store('miss_photos', 'public');
 
         Miss::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'age' => $request->age,
-            'city' => $request->city,
-            'country' => $request->country,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'main_photo_url' => Storage::url($mainPhotoPath),
-            'short_presentation' => $request->short_presentation,
-            'status' => 'pending', // New candidates are pending by default
+            'nom'              => $request->nom,
+            'prenom'           => $request->prenom,
+            'age'              => $request->age,
+            'pays'             => $request->pays,
+            'telephone'        => $request->telephone,
+            'email'            => $request->email,
+            'photo_principale' => Storage::url($photoPath),
+            'bio'              => $request->bio,
+            'statut'           => 'pending',
         ]);
 
-        return redirect()->route('home')->with('success', 'Votre candidature a été soumise avec succès et est en attente de validation.');
+        return redirect()->route('home')->with('success', 'Votre candidature a été soumise et est en attente de validation.');
     }
 }

@@ -10,10 +10,10 @@
     </a>
 
     <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
-        <img src="{{ $miss->main_photo_url }}" alt="{{ $miss->full_name }}" class="w-full h-64 md:h-96 object-cover" />
+        <img src="{{ $miss->photo_principale }}" alt="{{ $miss->prenom }} {{ $miss->nom }}" class="w-full h-64 md:h-96 object-cover" />
         <div class="p-6">
-            <h1 class="text-3xl md:text-4xl font-bold text-text-gray-900">{{ $miss->full_name }}</h1>
-            <p class="text-text-gray-600 text-lg mt-1">{{ $miss->city }}, {{ $miss->country }} • {{ $miss->age }} ans</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-text-gray-900">{{ $miss->prenom }} {{ $miss->nom }}</h1>
+            <p class="text-text-gray-600 text-lg mt-1">{{ $miss->ville }}, {{ $miss->pays }} • {{ $miss->age }} ans</p>
             <div class="inline-block bg-bg-pink-100 text-text-pink-700 font-bold py-1 px-3 rounded-full text-sm mt-3">
                 {{ $miss->total_votes }} votes
             </div>
@@ -23,7 +23,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-white rounded-xl shadow-lg p-6">
             <h2 class="text-2xl font-bold text-text-gray-800 mb-4">À propos</h2>
-            <p class="text-text-gray-700 leading-relaxed">{{ $miss->short_presentation }}</p>
+            <p class="text-text-gray-700 leading-relaxed">{{ $miss->presentation_courte }}</p>
         </div>
 
         <div class="bg-white rounded-xl shadow-lg p-6">
@@ -31,7 +31,7 @@
             @if($photos->isNotEmpty())
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
                     @foreach($photos as $photo)
-                        <img src="{{ $photo->file_url }}" alt="{{ $miss->full_name }} photo" class="w-full h-32 object-cover rounded-lg shadow-sm" />
+                        <img src="{{ $photo->url }}" alt="{{ $miss->prenom }} {{ $miss->nom }} photo" class="w-full h-32 object-cover rounded-lg shadow-sm" />
                     @endforeach
                 </div>
             @else
@@ -44,10 +44,9 @@
         <h2 class="text-2xl font-bold text-text-gray-800 mb-4">Vidéo de présentation</h2>
         @if($video)
             <div class="aspect-w-16 aspect-h-9 w-full">
-                <!-- Assuming video URL is an embeddable link like YouTube/Vimeo -->
                 <iframe
                     class="w-full h-full rounded-lg"
-                    src="{{ $video->description }}"
+                    src="{{ $video->url }}"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
@@ -61,7 +60,7 @@
     </div>
 
     <div class="bg-white rounded-xl shadow-lg p-6 mt-8 text-center">
-        <h2 class="text-2xl font-bold text-text-gray-800 mb-4">Votez pour {{ $miss->first_name }} {{ $miss->last_name }}</h2>
+        <h2 class="text-2xl font-bold text-text-gray-800 mb-4">Votez pour {{ $miss->prenom }} {{ $miss->nom }}</h2>
         <p class="text-text-gray-600 mb-6">Soutenez votre candidate favorite</p>
         <x-buttons.primary-button onclick="window.location='{{ route('vote.show', $miss->id) }}'">
             Voter pour elle maintenant

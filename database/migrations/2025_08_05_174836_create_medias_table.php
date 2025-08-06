@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('medias', function (Blueprint $table) {
             $table->id();
             $table->foreignId('miss_id')->constrained('misses')->onDelete('cascade');
-            $table->string('file_url');
             $table->enum('type', ['photo', 'video']);
-            $table->string('description')->nullable();
-            $table->timestamps();
+            $table->string('url', 255)->nullable();
+            $table->dateTime('date_upload')->useCurrent();
         });
     }
 

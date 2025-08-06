@@ -10,14 +10,14 @@
         </div>
         <h1 class="text-3xl font-bold text-text-gray-900 mb-4">Vote enregistré avec succès !</h1>
         <p class="text-text-gray-700 text-lg mb-6">
-            Merci d'avoir voté pour <span class="font-semibold">{{ $miss->full_name }}</span>. Votre soutien est précieux !
+            Merci d'avoir voté pour <span class="font-semibold">{{ $miss->prenom }} {{ $miss->nom }}</span>. Votre soutien est précieux !
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
             <x-buttons.primary-button onclick="window.location='{{ route('home') }}'">
                 Retour à l'accueil
             </x-buttons.primary-button>
             <x-buttons.secondary-button onclick="window.location='{{ route('candidates.show', $miss->id) }}'">
-                Voir le profil de {{ $miss->first_name }}
+                Voir le profil de {{ $miss->prenom }}
             </x-buttons.secondary-button>
         </div>
     </div>

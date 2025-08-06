@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Miss;
@@ -10,113 +9,101 @@ use App\Models\Media;
 
 class MissSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        // Clear existing data
         Miss::truncate();
         Media::truncate();
-
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
 
         $missesData = [
             [
-                'first_name' => 'Sophie',
-                'last_name' => 'Martin',
-                'age' => 23,
-                'city' => 'Paris',
-                'country' => 'France',
-                'email' => 'sophie.martin@example.com',
-                'main_photo_url' => '/storage/miss_photos/6t1KWtWyM9c13hXvahaPrdc87OHiWcEdBIiyJEwZ.png',
-                'short_presentation' => 'Étudiante en médecine à la Sorbonne, passionnée par la mode et l\'art contemporain. Je milite pour l\'accès aux soins dans les zones rurales et je pratique la danse classique depuis l\'âge de 5 ans.',
-                'status' => 'active',
-                'total_votes' => 1245,
-                'medias' => [
-                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
-                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
-                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
-                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
-                    ['file_url' => '/placeholder.svg?height=600&width=400', 'type' => 'video', 'description' => 'https://www.youtube.com/embed/dQw4w9WgXcQ'], // Example video URL
-                ]
-            ],
-            [
-                'first_name' => 'Amélie',
-                'last_name' => 'Dubois',
-                'age' => 20,
-                'city' => 'Lyon',
-                'country' => 'France',
-                'email' => 'amelie.dubois@example.com',
-                'main_photo_url' => '/storage/miss_photos/6t1KWtWyM9c13hXvahaPrdc87OHiWcEdBIiyJEwZ.png',
-                'short_presentation' => 'Passionnée de technologie et de robotique, je rêve de créer des solutions innovantes pour un monde meilleur. Je suis également une grande lectrice de science-fiction.',
-                'status' => 'active',
-                'total_votes' => 987,
-                'medias' => [
-                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
-                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
-                ]
-            ],
-            [
-                'first_name' => 'Camille',
-                'last_name' => 'Laurent',
-                'age' => 25,
-                'city' => 'Marseille',
-                'country' => 'France',
-                'email' => 'camille.laurent@example.com',
-                'main_photo_url' => '/storage/miss_photos/6t1KWtWyM9c13hXvahaPrdc87OHiWcEdBIiyJEwZ.png',
-                'short_presentation' => 'Artiste peintre et musicienne, je trouve mon inspiration dans la nature et les émotions humaines. Je crois en la puissance de l\'art pour connecter les gens.',
-                'status' => 'active',
-                'total_votes' => 756,
-                'medias' => [
-                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
-                ]
-            ],
-            [
-                'first_name' => 'Emma',
-                'last_name' => 'Leroy',
-                'age' => 21,
-                'city' => 'Nice',
-                'country' => 'France',
-                'email' => 'emma.leroy@example.com',
-                'main_photo_url' => '/storage/miss_photos/6t1KWtWyM9c13hXvahaPrdc87OHiWcEdBIiyJEwZ.png',
-                'short_presentation' => 'Adepte de sports extrêmes et de voyages, je cherche toujours à repousser mes limites. J\'aime découvrir de nouvelles cultures et partager mes expériences.',
-                'status' => 'active',
-                'total_votes' => 500,
-                'medias' => []
-            ],
-            [
-                'first_name' => 'Julie',
-                'last_name' => 'Bernard',
+                'nom' => 'Mabika',
+                'prenom' => 'Aïssatou',
                 'age' => 22,
-                'city' => 'Toulouse',
-                'country' => 'France',
-                'email' => 'julie.bernard@example.com',
-                'main_photo_url' => '/storage/miss_photos/6t1KWtWyM9c13hXvahaPrdc87OHiWcEdBIiyJEwZ.png',
-                'short_presentation' => 'Bénévole dans des associations caritatives, je suis engagée pour la justice sociale et l\'égalité. Je crois que chaque petite action peut faire une grande différence.',
-                'status' => 'active',
-                'total_votes' => 400,
+                'pays' => 'Sénégal',
+                'email' => 'aissatou.mabika@example.com',
+                'telephone' => '+221772345678',
+                'photo_principale' => '/storage/miss_photos/aissatou.png',
+                'bio' => 'Étudiante en droit international, passionnée par la défense des droits des femmes et des enfants.',
+                'mot_de_passe' => bcrypt('password'),
+                'statut' => 'active',
+                'medias' => [
+                    ['url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo', 'date_upload' => now()],
+                    ['url' => '/placeholder.svg?height=600&width=400', 'type' => 'video', 'date_upload' => now()],
+                ]
+            ],
+            [
+                'nom' => 'N’Guessan',
+                'prenom' => 'Clarisse',
+                'age' => 24,
+                'pays' => 'Côte d’Ivoire',
+                'email' => 'clarisse.nguessan@example.com',
+                'telephone' => '+2250701020304',
+                'photo_principale' => '/storage/miss_photos/clarisse.png',
+                'bio' => 'Ingénieure en informatique, spécialisée dans l’intelligence artificielle, elle milite pour plus de femmes dans la tech.',
+                'mot_de_passe' => bcrypt('password'),
+                'statut' => 'active',
+                'medias' => [
+                    ['url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo', 'date_upload' => now()],
+                ]
+            ],
+            [
+                'nom' => 'Okeke',
+                'prenom' => 'Chimamanda',
+                'age' => 21,
+                'pays' => 'Nigeria',
+                'email' => 'chimamanda.okeke@example.com',
+                'telephone' => '+2348012345678',
+                'photo_principale' => '/storage/miss_photos/chimamanda.png',
+                'bio' => 'Étudiante en littérature anglaise, auteure de poèmes et fervente défenseuse de l’éducation pour les filles.',
+                'mot_de_passe' => bcrypt('password'),
+                'statut' => 'active',
                 'medias' => []
             ],
             [
-                'first_name' => 'Léa',
-                'last_name' => 'Petit',
-                'age' => 19,
-                'city' => 'Bordeaux',
-                'country' => 'France',
-                'email' => 'lea.petit@example.com',
-                'main_photo_url' => '/storage/miss_photos/6t1KWtWyM9c13hXvahaPrdc87OHiWcEdBIiyJEwZ.png',
-                'short_presentation' => 'Future architecte, je suis fascinée par le design et la création d\'espaces qui inspirent. J\'aime dessiner et explorer de nouvelles formes d\'expression.',
-                'status' => 'pending',
-                'total_votes' => 0,
+                'nom' => 'Bongongo',
+                'prenom' => 'Déborah',
+                'age' => 23,
+                'pays' => 'RDC',
+                'email' => 'deborah.bongongo@example.com',
+                'telephone' => '+243820000000',
+                'photo_principale' => '/storage/miss_photos/deborah.png',
+                'bio' => 'Styliste et créatrice de mode, inspirée par les tissus traditionnels africains.',
+                'mot_de_passe' => bcrypt('password'),
+                'statut' => 'active',
+                'medias' => []
+            ],
+            [
+                'nom' => 'Zerbo',
+                'prenom' => 'Salimata',
+                'age' => 20,
+                'pays' => 'Burkina Faso',
+                'email' => 'salimata.zerbo@example.com',
+                'telephone' => '+22670112233',
+                'photo_principale' => '/storage/miss_photos/salimata.png',
+                'bio' => 'Étudiante en agroécologie, engagée pour la protection de l’environnement et la sécurité alimentaire.',
+                'mot_de_passe' => bcrypt('password'),
+                'statut' => 'pending',
+                'medias' => []
+            ],
+            [
+                'nom' => 'Domingo',
+                'prenom' => 'Marie-jeanne',
+                'age' => 23,
+                'pays' => 'BENIN',
+                'email' => 'Dmin.MJ@gmail.com',
+                'telephone' => '+229820000000',
+                'photo_principale' => '/storage/miss_photos/deborah.png',
+                'bio' => 'Styliste et créatrice de mode, inspirée par les tissus traditionnels africains.',
+                'mot_de_passe' => bcrypt('password'),
+                'statut' => 'active',
                 'medias' => []
             ],
         ];
 
         foreach ($missesData as $missData) {
-            $medias = $missData['medias'];
+            $medias = $missData['medias'] ?? [];
             unset($missData['medias']);
 
             $miss = Miss::create($missData);

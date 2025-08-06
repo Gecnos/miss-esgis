@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('misses', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('nom', 100);
+            $table->string('prenom', 100);
             $table->integer('age');
-            $table->string('city');
-            $table->string('country');
-            $table->string('phone')->nullable();
-            $table->string('email')->unique();
-            $table->string('main_photo_url');
-            $table->text('short_presentation')->nullable();
-            $table->enum('status', ['pending', 'active', 'rejected'])->default('pending');
-            $table->timestamps();
+            $table->string('pays', 100)->nullable();
+            $table->string('email', 255)->nullable();
+            $table->string('telephone', 20)->nullable();
+            $table->text('bio')->nullable();
+            $table->string('photo_principale', 255)->nullable();
+            $table->string('mot_de_passe', 255)->nullable();
+            $table->enum('statut', ['pending', 'active', 'reject'])->default('pending');
+            $table->dateTime('date_inscription')->useCurrent();
         });
     }
 
