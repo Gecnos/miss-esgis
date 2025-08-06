@@ -13,7 +13,7 @@
         </div>
 
         @if ($topMiss)
-            <section class="mb-12 border-4 border-primary-pink bg-secondary-pink">
+            <section class="mb-12 border-4 border-primary-pink bg-gradient-pink-light">
                 <h2 class="text-2xl font-bold text-text-gray-800 mb-6 flex items-center justify-center md:justify-start"
                     style="position: relative; left: -190px; top: 34px; width: 1418.43px; transform: translate(233.333px, 0px); transition: none; cursor: move;"
                     data-metatip="true" data-label-id="0">
