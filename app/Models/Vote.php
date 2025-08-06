@@ -11,19 +11,20 @@ class Vote extends Model
 
     protected $fillable = [
         'miss_id',
-        'voter_email',
-        'voter_phone',
-        'amount',
-        'payment_method',
-        'transaction_id',
-        'status',
+        'moyen_paiement',
+        'montant',
+        'timestamp',
+        'numero_telephone',
+        'email',
+        'ip_adresse',
     ];
+    public $timestamps = false;
 
     /**
      * Get the miss that received the vote.
      */
     public function miss()
     {
-        return $this->belongsTo(Miss::class);
+        return $this->belongsTo(Miss::class, 'miss_id');
     }
 }

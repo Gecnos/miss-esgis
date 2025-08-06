@@ -10,25 +10,25 @@ class Miss extends Model
     use HasFactory;
 
     protected $fillable = [
-        'first_name',
-        'last_name',
+        'nom',
+        'prenom',
         'age',
-        'city',
-        'country',
-        'phone',
+        'pays',
+        'telephone',
         'email',
-        'main_photo_url',
-        'short_presentation',
-        'status',
-        'total_votes',
+        'bio',
+        'photo_principale',
+        'mot_de_passe',
+        'statut',
+        'date_inscription',
     ];
-
+     public $timestamps = false;
     /**
      * Get the medias for the miss.
      */
     public function medias()
     {
-        return $this->hasMany(Media::class);
+        return $this->hasMany(Media::class, 'miss_id');
     }
 
     /**
@@ -36,12 +36,18 @@ class Miss extends Model
      */
     public function votes()
     {
-        return $this->hasMany(Vote::class);
+        return $this->hasMany(Vote::class, 'miss_id');
     }
 
     // Accessor for full name
     public function getFullNameAttribute()
     {
-        return "{$this->first_name} {$this->last_name}";
+        return "{$this->prenom} {$this->nom}";
+    }
+
+    // Accessor for Totalvote
+    public function getTotalVotesAttribute()
+    {
+        return $this->votes()->count();
     }
 }
