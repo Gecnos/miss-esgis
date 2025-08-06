@@ -1,0 +1,162 @@
+📂 Arborescence du projet : .
+--------------------------------------------------
+.
+├── app
+│   ├── Http
+│   │   ├── Controllers
+│   │   │   ├── Auth
+│   │   │   │   └── MissAuthController.php
+│   │   │   ├── CandidateController.php
+│   │   │   ├── Controller.php
+│   │   │   ├── HomeController.php
+│   │   │   ├── ProfileController.php
+│   │   │   └── VoteController.php
+│   │   └── Requests
+│   │       ├── Auth
+│   │       │   └── LoginRequest.php
+│   │       └── ProfileUpdateRequest.php
+│   ├── Models
+│   │   ├── Media.php
+│   │   ├── Miss.php
+│   │   ├── User.php
+│   │   └── Vote.php
+│   ├── Providers
+│   │   └── AppServiceProvider.php
+│   └── View
+│       └── Components
+│           ├── AppLayout.php
+│           └── GuestLayout.php
+├── arborescence.txt
+├── arbo.sh
+├── artisan
+├── bootstrap
+│   ├── app.php
+│   ├── cache
+│   │   ├── .gitignore
+│   │   ├── packages.php
+│   │   └── services.php
+│   └── providers.php
+├── composer.json
+├── config
+│   ├── app.php
+│   ├── auth.php
+│   ├── cache.php
+│   ├── database.php
+│   ├── filesystems.php
+│   ├── logging.php
+│   ├── mail.php
+│   ├── queue.php
+│   ├── services.php
+│   └── session.php
+├── database
+│   ├── factories
+│   │   └── UserFactory.php
+│   ├── .gitignore
+│   ├── migrations
+│   │   ├── 0001_01_01_000000_create_users_table.php
+│   │   ├── 0001_01_01_000001_create_cache_table.php
+│   │   ├── 0001_01_01_000002_create_jobs_table.php
+│   │   ├── 2025_08_05_174739_create_miss_table.php
+│   │   ├── 2025_08_05_174806_create_votes_table.php
+│   │   └── 2025_08_05_174836_create_medias_table.php
+│   └── seeders
+│       ├── DatabaseSeeder.php
+│       └── MissSeeder.php
+├── .editorconfig
+├── .env
+├── .env.example
+├── .gitattributes
+├── .gitignore
+├── miss_vote.sql
+├── package.json
+├── package-lock.json
+├── phpunit.xml
+├── postcss.config.js
+├── public
+│   ├── build
+│   │   ├── assets
+│   │   │   ├── app-DtCVKgHt.js
+│   │   │   └── app-Dz7EiTNI.css
+│   │   └── manifest.json
+│   ├── favicon.ico
+│   ├── .htaccess
+│   ├── index.php
+│   └── robots.txt
+├── README.md
+├── resources
+│   ├── css
+│   │   └── app.css
+│   ├── js
+│   │   ├── app.js
+│   │   └── bootstrap.js
+│   └── views
+│       ├── auth
+│       │   ├── confirm-password.blade.php
+│       │   ├── forgot-password.blade.php
+│       │   ├── login.blade.php
+│       │   ├── register.blade.php
+│       │   ├── reset-password.blade.php
+│       │   └── verify-email.blade.php
+│       ├── candidates
+│       │   ├── index.blade.php
+│       │   └── show.blade.php
+│       ├── components
+│       │   ├── application-logo.blade.php
+│       │   ├── auth-session-status.blade.php
+│       │   ├── buttons
+│       │   │   ├── primary.blade.php
+│       │   │   └── secondary.blade.php
+│       │   ├── cards
+│       │   │   └── candidate.blade.php
+│       │   ├── danger-button.blade.php
+│       │   ├── dropdown.blade.php
+│       │   ├── dropdown-link.blade.php
+│       │   ├── input-error.blade.php
+│       │   ├── input-label.blade.php
+│       │   ├── inputs
+│       │   │   ├── file.blade.php
+│       │   │   ├── textarea.blade.php
+│       │   │   └── text.blade.php
+│       │   ├── modal.blade.php
+│       │   ├── navigation
+│       │   │   ├── bottom.blade.php
+│       │   │   └── header.blade.php
+│       │   ├── nav-link.blade.php
+│       │   ├── primary-button.blade.php
+│       │   ├── responsive-nav-link.blade.php
+│       │   ├── secondary-button.blade.php
+│       │   └── text-input.blade.php
+│       ├── home.blade.php
+│       ├── layouts
+│       │   └── app.blade.php
+│       ├── profile
+│       │   ├── edit.blade.php
+│       │   └── partials
+│       │       ├── delete-user-form.blade.php
+│       │       ├── update-password-form.blade.php
+│       │       └── update-profile-information-form.blade.php
+│       └── vote
+│           ├── show.blade.php
+│           └── success.blade.php
+├── routes
+│   ├── auth.php
+│   ├── console.php
+│   └── web.php
+├── tailwind.config.js
+├── tests
+│   ├── Feature
+│   │   ├── Auth
+│   │   │   ├── AuthenticationTest.php
+│   │   │   ├── EmailVerificationTest.php
+│   │   │   ├── PasswordConfirmationTest.php
+│   │   │   ├── PasswordResetTest.php
+│   │   │   ├── PasswordUpdateTest.php
+│   │   │   └── RegistrationTest.php
+│   │   ├── ExampleTest.php
+│   │   └── ProfileTest.php
+│   ├── TestCase.php
+│   └── Unit
+│       └── ExampleTest.php
+└── vite.config.js
+
+40 directories, 117 files

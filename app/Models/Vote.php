@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Vote extends Model
 {
@@ -12,20 +11,19 @@ class Vote extends Model
 
     protected $fillable = [
         'miss_id',
-        'moyen_paiement',
-        'montant',
-        'numero_telephone',
-        'email',
-        'ip_adresse'
+        'voter_email',
+        'voter_phone',
+        'amount',
+        'payment_method',
+        'transaction_id',
+        'status',
     ];
 
-    protected $casts = [
-        'timestamp' => 'datetime',
-        'montant' => 'decimal:2'
-    ];
-
-    public function miss(): BelongsTo
+    /**
+     * Get the miss that received the vote.
+     */
+    public function miss()
     {
-        return $this->belongsTo(Miss::class, 'miss_id');
+        return $this->belongsTo(Miss::class);
     }
 }

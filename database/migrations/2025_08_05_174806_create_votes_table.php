@@ -6,22 +6,28 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('miss_id')->constrained('misses')->onDelete('cascade');
-            $table->string('moyen_paiement', 50)->nullable();
-            $table->decimal('montant', 10, 2)->nullable();
-            $table->timestamp('timestamp')->useCurrent();
-            $table->string('numero_telephone', 20)->nullable();
-            $table->string('email', 255)->nullable();
-            $table->string('ip_adresse', 50)->nullable();
+            $table->string('voter_email');
+            $table->string('voter_phone')->nullable();
+            $table->decimal('amount', 8, 2); // Amount paid for the vote
+            $table->string('payment_method'); // e.g., 'Mobile Money', 'Credit Card'
+            $table->string('transaction_id')->nullable(); // Payment gateway transaction ID
+            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
             $table->timestamps();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('votes');
     }

@@ -4,29 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Media extends Model
 {
+    protected $table = 'medias';
+
     use HasFactory;
 
     protected $fillable = [
         'miss_id',
+        'file_url',
         'type',
-        'url'
+        'description',
     ];
 
-    protected $casts = [
-        'date_upload' => 'datetime'
-    ];
-
-    public function miss(): BelongsTo
+    /**
+     * Get the miss that owns the media.
+     */
+    public function miss()
     {
-        return $this->belongsTo(Miss::class, 'miss_id');
-    }
-
-    public function getUrlAttribute($value)
-    {
-        return asset('storage/' . $value);
+        return $this->belongsTo(Miss::class);
     }
 }

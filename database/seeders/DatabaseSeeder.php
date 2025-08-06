@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             MissSeeder::class,
+            // Add other seeders here if you have them, e.g., UserSeeder for admins
         ]);
     }
 }
