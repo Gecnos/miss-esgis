@@ -1,4 +1,4 @@
-<header class="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-50">
+<header class="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-50" style="background:transparent">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between h-16">
         <div class="flex items-center space-x-2">
             <img src="/placeholder.svg?height=24&width=24" alt="Miss Élégance Logo" class="h-6 w-6" />
@@ -53,11 +53,15 @@
                 <span>Accueil</span>
             </a>
             <a href="{{ route('candidates.index') }}" class="text-gray-700 hover:text-primary-pink py-2 px-4 rounded-lg w-11/12 text-center bg-gray-100 flex items-center justify-center space-x-2 transition-colors duration-200">
-               <x-heroicon-o-user />
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h2a2 2 0 002-2V4a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h2m5-10v4m0 0l-2-2m2 2l2-2m-3 8a2 2 0 01-2-2v-4a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2H9z" />
+                </svg>
                 <span>Candidates</span>
             </a>
             <a href="{{ route('candidates.create') }}" class="text-gray-700 hover:text-primary-pink py-2 px-4 rounded-lg w-11/12 text-center bg-gray-100 flex items-center justify-center space-x-2 transition-colors duration-200">
-                <x-heroicon-o-user />
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
                 <span>S'inscrire</span>
             </a>
             <a href="{{ route('home') }}#vote-section" class="text-gray-700 hover:text-primary-pink py-2 px-4 rounded-lg w-11/12 text-center bg-gray-100 flex items-center justify-center space-x-2 transition-colors duration-200">

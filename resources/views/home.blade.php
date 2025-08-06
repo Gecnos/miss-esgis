@@ -25,7 +25,7 @@
                 <p class="text-text-gray-600">{{ $topMiss->city }}, {{ $topMiss->country }}</p>
                 <p class="text-text-pink-600 font-bold text-lg mt-2">{{ $topMiss->total_votes }} votes</p>
             </div>
-            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto" style="height: 76px; transform: translate(0px, 17px);">
                 <x-buttons.secondary-button class="flex-1" onclick="window.location='{{ route('candidates.show', $topMiss->id) }}'">
                     Voir profil
                 </x-buttons.secondary-button>
