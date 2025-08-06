@@ -19,7 +19,7 @@ class MissSeeder extends Seeder
         // Clear existing data
         Miss::truncate();
         Media::truncate();
-        
+
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 
@@ -31,7 +31,7 @@ class MissSeeder extends Seeder
                 'city' => 'Paris',
                 'country' => 'France',
                 'email' => 'sophie.martin@example.com',
-                'main_photo_url' => '/placeholder.svg?height=600&width=600',
+                'main_photo_url' => '/storage/miss_photos/6t1KWtWyM9c13hXvahaPrdc87OHiWcEdBIiyJEwZ.png',
                 'short_presentation' => 'Étudiante en médecine à la Sorbonne, passionnée par la mode et l\'art contemporain. Je milite pour l\'accès aux soins dans les zones rurales et je pratique la danse classique depuis l\'âge de 5 ans.',
                 'status' => 'active',
                 'total_votes' => 1245,
@@ -50,7 +50,7 @@ class MissSeeder extends Seeder
                 'city' => 'Lyon',
                 'country' => 'France',
                 'email' => 'amelie.dubois@example.com',
-                'main_photo_url' => '/placeholder.svg?height=600&width=600',
+                'main_photo_url' => '/storage/miss_photos/6t1KWtWyM9c13hXvahaPrdc87OHiWcEdBIiyJEwZ.png',
                 'short_presentation' => 'Passionnée de technologie et de robotique, je rêve de créer des solutions innovantes pour un monde meilleur. Je suis également une grande lectrice de science-fiction.',
                 'status' => 'active',
                 'total_votes' => 987,
@@ -66,7 +66,7 @@ class MissSeeder extends Seeder
                 'city' => 'Marseille',
                 'country' => 'France',
                 'email' => 'camille.laurent@example.com',
-                'main_photo_url' => '/placeholder.svg?height=600&width=600',
+                'main_photo_url' => '/storage/miss_photos/6t1KWtWyM9c13hXvahaPrdc87OHiWcEdBIiyJEwZ.png',
                 'short_presentation' => 'Artiste peintre et musicienne, je trouve mon inspiration dans la nature et les émotions humaines. Je crois en la puissance de l\'art pour connecter les gens.',
                 'status' => 'active',
                 'total_votes' => 756,
@@ -81,7 +81,7 @@ class MissSeeder extends Seeder
                 'city' => 'Nice',
                 'country' => 'France',
                 'email' => 'emma.leroy@example.com',
-                'main_photo_url' => '/placeholder.svg?height=600&width=600',
+                'main_photo_url' => '/storage/miss_photos/6t1KWtWyM9c13hXvahaPrdc87OHiWcEdBIiyJEwZ.png',
                 'short_presentation' => 'Adepte de sports extrêmes et de voyages, je cherche toujours à repousser mes limites. J\'aime découvrir de nouvelles cultures et partager mes expériences.',
                 'status' => 'active',
                 'total_votes' => 500,
@@ -94,7 +94,7 @@ class MissSeeder extends Seeder
                 'city' => 'Toulouse',
                 'country' => 'France',
                 'email' => 'julie.bernard@example.com',
-                'main_photo_url' => '/placeholder.svg?height=600&width=600',
+                'main_photo_url' => '/storage/miss_photos/6t1KWtWyM9c13hXvahaPrdc87OHiWcEdBIiyJEwZ.png',
                 'short_presentation' => 'Bénévole dans des associations caritatives, je suis engagée pour la justice sociale et l\'égalité. Je crois que chaque petite action peut faire une grande différence.',
                 'status' => 'active',
                 'total_votes' => 400,
@@ -107,9 +107,9 @@ class MissSeeder extends Seeder
                 'city' => 'Bordeaux',
                 'country' => 'France',
                 'email' => 'lea.petit@example.com',
-                'main_photo_url' => '/placeholder.svg?height=600&width=600',
+                'main_photo_url' => '/storage/miss_photos/6t1KWtWyM9c13hXvahaPrdc87OHiWcEdBIiyJEwZ.png',
                 'short_presentation' => 'Future architecte, je suis fascinée par le design et la création d\'espaces qui inspirent. J\'aime dessiner et explorer de nouvelles formes d\'expression.',
-                'status' => 'pending', 
+                'status' => 'pending',
                 'total_votes' => 0,
                 'medias' => []
             ],

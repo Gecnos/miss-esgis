@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('main_photo_url');
             $table->text('short_presentation')->nullable();
             $table->enum('status', ['pending', 'active', 'rejected'])->default('pending');
-            $table->integer('total_votes')->default(0);
             $table->timestamps();
         });
     }

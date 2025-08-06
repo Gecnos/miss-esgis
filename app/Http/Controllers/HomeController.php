@@ -3,18 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Miss;
-use Illuminate\Http\Request;
+use App\Models\Vote;
 
 class HomeController extends Controller
 {
-    /**
-     * Display the home page with candidates.
-     */
     public function index()
     {
-        $totalVotes = Miss::sum('total_votes');
-        $topMiss = Miss::where('status', 'active')->orderByDesc('total_votes')->first();
-        $activeMisses = Miss::where('status', 'active')->orderByDesc('total_votes')->get();
+        // Total votes = nombre de lignes dans votes
+        $totalVotes = Vote::count();
+
+        // Top Miss par nombre de votes
+        $topMiss = Miss::withCount('votes')
+            ->where('status', 'active')
+            ->orderByDesc('votes_count')
+            ->first();
+
+        // Toutes les candidates actives triées par nombre de votes
+        $activeMisses = Miss::withCount('votes')
+            ->where('status', 'active')
+            ->orderByDesc('votes_count')
+            ->get();
 
         return view('home', compact('totalVotes', 'topMiss', 'activeMisses'));
     }

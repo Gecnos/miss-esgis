@@ -27,6 +27,7 @@ export default {
                 'text-pink-800': '#9D174D', // For vote badge on vote page text
                 'bg-yellow-400': '#FACC15', // For total votes badge
                 'text-yellow-900': '#78350F', // For total votes badge text
+                'gradient-pink-light': '#f0ddbbff',
             },
         },
     },
