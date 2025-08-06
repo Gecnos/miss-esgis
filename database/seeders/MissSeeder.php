@@ -2,97 +2,127 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Models\Miss;
-use App\Models\Vote;
+use App\Models\Media;
 
 class MissSeeder extends Seeder
 {
-    public function run()
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
     {
-        $candidates = [
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // Clear existing data
+        Miss::truncate();
+        Media::truncate();
+        
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+
+        $missesData = [
             [
-                'nom' => 'Martin',
-                'prenom' => 'Sophie',
+                'first_name' => 'Sophie',
+                'last_name' => 'Martin',
                 'age' => 23,
-                'pays' => 'Paris, France',
+                'city' => 'Paris',
+                'country' => 'France',
                 'email' => 'sophie.martin@example.com',
-                'telephone' => '+33 6 12 34 56 78',
-                'bio' => 'Étudiante en médecine à la Sorbonne, passionnée par la mode et l\'art contemporain. Je milite pour l\'accès aux soins dans les zones rurales et je pratique la danse classique depuis l\'âge de 5 ans.',
-                'photo_principale' => 'candidates/sophie-martin.jpg',
-                'mot_de_passe' => Hash::make('password'),
-                'statut' => 'active',
-                'votes' => 1245
+                'main_photo_url' => '/placeholder.svg?height=600&width=600',
+                'short_presentation' => 'Étudiante en médecine à la Sorbonne, passionnée par la mode et l\'art contemporain. Je milite pour l\'accès aux soins dans les zones rurales et je pratique la danse classique depuis l\'âge de 5 ans.',
+                'status' => 'active',
+                'total_votes' => 1245,
+                'medias' => [
+                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
+                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
+                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
+                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
+                    ['file_url' => '/placeholder.svg?height=600&width=400', 'type' => 'video', 'description' => 'https://www.youtube.com/embed/dQw4w9WgXcQ'], // Example video URL
+                ]
             ],
             [
-                'nom' => 'Dubois',
-                'prenom' => 'Amélie',
-                'age' => 21,
-                'pays' => 'Lyon, France',
+                'first_name' => 'Amélie',
+                'last_name' => 'Dubois',
+                'age' => 20,
+                'city' => 'Lyon',
+                'country' => 'France',
                 'email' => 'amelie.dubois@example.com',
-                'telephone' => '+33 6 23 45 67 89',
-                'bio' => 'Passionnée de photographie et de voyages, je souhaite utiliser ma notoriété pour sensibiliser à la protection de l\'environnement.',
-                'photo_principale' => 'candidates/amelie-dubois.jpg',
-                'mot_de_passe' => Hash::make('password'),
-                'statut' => 'active',
-                'votes' => 987
+                'main_photo_url' => '/placeholder.svg?height=600&width=600',
+                'short_presentation' => 'Passionnée de technologie et de robotique, je rêve de créer des solutions innovantes pour un monde meilleur. Je suis également une grande lectrice de science-fiction.',
+                'status' => 'active',
+                'total_votes' => 987,
+                'medias' => [
+                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
+                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
+                ]
             ],
             [
-                'nom' => 'Laurent',
-                'prenom' => 'Camille',
-                'age' => 24,
-                'pays' => 'Marseille, France',
-                'email' => 'camille.laurent@example.com',
-                'telephone' => '+33 6 34 56 78 90',
-                'bio' => 'Ingénieure en informatique le jour, artiste peintre le soir. Je rêve de créer une fondation pour l\'art thérapie.',
-                'photo_principale' => 'candidates/camille-laurent.jpg',
-                'mot_de_passe' => Hash::make('password'),
-                'statut' => 'active',
-                'votes' => 756
-            ],
-            [
-                'nom' => 'Leroy',
-                'prenom' => 'Emma',
-                'age' => 22,
-                'pays' => 'Nice, France',
-                'email' => 'emma.leroy@example.com',
-                'telephone' => '+33 6 45 67 89 01',
-                'bio' => 'Étudiante en droit international, je souhaite œuvrer pour les droits des femmes dans le monde.',
-                'photo_principale' => 'candidates/emma-leroy.jpg',
-                'mot_de_passe' => Hash::make('password'),
-                'statut' => 'active',
-                'votes' => 623
-            ],
-            [
-                'nom' => 'Bernard',
-                'prenom' => 'Julie',
+                'first_name' => 'Camille',
+                'last_name' => 'Laurent',
                 'age' => 25,
-                'pays' => 'Toulouse, France',
+                'city' => 'Marseille',
+                'country' => 'France',
+                'email' => 'camille.laurent@example.com',
+                'main_photo_url' => '/placeholder.svg?height=600&width=600',
+                'short_presentation' => 'Artiste peintre et musicienne, je trouve mon inspiration dans la nature et les émotions humaines. Je crois en la puissance de l\'art pour connecter les gens.',
+                'status' => 'active',
+                'total_votes' => 756,
+                'medias' => [
+                    ['file_url' => '/placeholder.svg?height=300&width=300', 'type' => 'photo'],
+                ]
+            ],
+            [
+                'first_name' => 'Emma',
+                'last_name' => 'Leroy',
+                'age' => 21,
+                'city' => 'Nice',
+                'country' => 'France',
+                'email' => 'emma.leroy@example.com',
+                'main_photo_url' => '/placeholder.svg?height=600&width=600',
+                'short_presentation' => 'Adepte de sports extrêmes et de voyages, je cherche toujours à repousser mes limites. J\'aime découvrir de nouvelles cultures et partager mes expériences.',
+                'status' => 'active',
+                'total_votes' => 500,
+                'medias' => []
+            ],
+            [
+                'first_name' => 'Julie',
+                'last_name' => 'Bernard',
+                'age' => 22,
+                'city' => 'Toulouse',
+                'country' => 'France',
                 'email' => 'julie.bernard@example.com',
-                'telephone' => '+33 6 56 78 90 12',
-                'bio' => 'Professeure des écoles et bénévole dans une association d\'aide aux devoirs. L\'éducation est ma passion.',
-                'photo_principale' => 'candidates/julie-bernard.jpg',
-                'mot_de_passe' => Hash::make('password'),
-                'statut' => 'active',
-                'votes' => 445
-            ]
+                'main_photo_url' => '/placeholder.svg?height=600&width=600',
+                'short_presentation' => 'Bénévole dans des associations caritatives, je suis engagée pour la justice sociale et l\'égalité. Je crois que chaque petite action peut faire une grande différence.',
+                'status' => 'active',
+                'total_votes' => 400,
+                'medias' => []
+            ],
+            [
+                'first_name' => 'Léa',
+                'last_name' => 'Petit',
+                'age' => 19,
+                'city' => 'Bordeaux',
+                'country' => 'France',
+                'email' => 'lea.petit@example.com',
+                'main_photo_url' => '/placeholder.svg?height=600&width=600',
+                'short_presentation' => 'Future architecte, je suis fascinée par le design et la création d\'espaces qui inspirent. J\'aime dessiner et explorer de nouvelles formes d\'expression.',
+                'status' => 'pending', 
+                'total_votes' => 0,
+                'medias' => []
+            ],
         ];
 
-        foreach ($candidates as $candidateData) {
-            $votes = $candidateData['votes'];
-            unset($candidateData['votes']);
-            
-            $candidate = Miss::create($candidateData);
-            
-            // Créer les votes
-            for ($i = 0; $i < $votes; $i++) {
-                Vote::create([
-                    'miss_id' => $candidate->id,
-                    'moyen_paiement' => rand(0, 1) ? 'mobile_money' : 'carte_bancaire',
-                    'montant' => 1.00,
-                    'ip_adresse' => '127.0.0.1'
-                ]);
+        foreach ($missesData as $missData) {
+            $medias = $missData['medias'];
+            unset($missData['medias']);
+
+            $miss = Miss::create($missData);
+
+            foreach ($medias as $mediaData) {
+                $miss->medias()->create($mediaData);
             }
         }
     }

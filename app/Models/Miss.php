@@ -2,71 +2,46 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Model;
 
-class Miss extends Authenticatable
+class Miss extends Model
 {
     use HasFactory;
 
-    protected $table = 'misses';
-
     protected $fillable = [
-        'nom',
-        'prenom',
+        'first_name',
+        'last_name',
         'age',
-        'pays',
+        'city',
+        'country',
+        'phone',
         'email',
-        'telephone',
-        'bio',
-        'photo_principale',
-        'mot_de_passe',
-        'statut'
+        'main_photo_url',
+        'short_presentation',
+        'status',
+        'total_votes',
     ];
 
-    protected $hidden = [
-        'mot_de_passe',
-    ];
-
-    protected $casts = [
-        'date_inscription' => 'datetime',
-    ];
-
-    public function getAuthPassword()
+    /**
+     * Get the medias for the miss.
+     */
+    public function medias()
     {
-        return $this->mot_de_passe;
+        return $this->hasMany(Media::class);
     }
 
-    public function votes(): HasMany
+    /**
+     * Get the votes for the miss.
+     */
+    public function votes()
     {
-        return $this->hasMany(Vote::class, 'miss_id');
+        return $this->hasMany(Vote::class);
     }
 
-    public function medias(): HasMany
-    {
-        return $this->hasMany(Media::class, 'miss_id');
-    }
-
-    public function getVoteCountAttribute()
-    {
-        return $this->votes()->count();
-    }
-
+    // Accessor for full name
     public function getFullNameAttribute()
     {
-        return $this->prenom . ' ' . $this->nom;
-    }
-
-    public function getPhotoUrlAttribute()
-    {
-        return $this->photo_principale 
-            ? asset('storage/' . $this->photo_principale)
-            : asset('images/placeholder-avatar.jpg');
-    }
-
-    public function scopeActive($query)
-    {
-        return $query->where('statut', 'active');
+        return "{$this->first_name} {$this->last_name}";
     }
 }
