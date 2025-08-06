@@ -2,12 +2,14 @@
     <div class="container mx-auto px-4 py-3 flex items-center justify-between h-16">
         <div class="flex items-center space-x-2">
             <img src="/placeholder.svg?height=24&width=24" alt="Miss Élégance Logo" class="h-6 w-6" />
-            <span class="text-lg font-semibold text-gray-800">Miss Élégance</span>
+            <a href="{{ route('home') }}">
+                <span class="text-lg font-semibold text-gray-800">Miss Élégance</span>
+            </a>
         </div>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center space-x-6">
-            <a href="{{ route('home') }}"
+            {{--<a href="{{ route('home') }}"
                 class="text-gray-600 hover:text-primary-pink flex items-center space-x-1 transition-colors duration-200">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 10 10" enable-background="new 0 0 32 32"
@@ -20,7 +22,7 @@
                         d="M1.875 4.375L1.875 8.438L4.063 8.438L4.063 5.313L5.938 5.313L5.938 8.438L8.125 8.438L8.125 4.375" />
                 </svg>
                 <span style="border:1em ">Accueil</span>
-            </a>
+            </a>--}}
             <a href="{{ route('candidates.index') }}"
                 class="text-gray-600 hover:text-primary-pink flex items-center space-x-1 transition-colors duration-200">
                 <svg fill="#000000" width="px" height="20px" viewBox="0 0 0.24 0.24" id="user"
