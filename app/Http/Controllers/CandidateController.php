@@ -8,66 +8,70 @@ use Illuminate\Support\Facades\Storage;
 
 class CandidateController extends Controller
 {
+    /**
+     * Display a listing of all active candidates.
+     */
     public function index()
     {
-        $candidates = Miss::active()
-            ->withCount('votes')
-            ->orderBy('votes_count', 'desc')
-            ->get();
-
+        $candidates = Miss::where('status', 'active')->orderBy('first_name')->get();
         return view('candidates.index', compact('candidates'));
     }
 
-    public function show($id)
+    /**
+     * Display the specified candidate.
+     */
+    public function show(Miss $miss)
     {
-        $candidate = Miss::active()
-            ->with(['medias', 'votes'])
-            ->withCount('votes')
-            ->findOrFail($id);
+        // Ensure only active candidates can be viewed publicly
+        if ($miss->status !== 'active') {
+            abort(404);
+        }
+        $photos = $miss->medias()->where('type', 'photo')->get();
+        $video = $miss->medias()->where('type', 'video')->first();
 
-        return view('candidates.show', compact('candidate'));
+        return view('candidates.show', compact('miss', 'photos', 'video'));
     }
 
-    public function dashboard()
+    /**
+     * Show the form for creating a new candidate.
+     */
+    public function create()
     {
-        $candidate = auth('miss')->user();
-        $candidate->load(['votes', 'medias']);
-        $candidate->loadCount('votes');
-
-        return view('candidates.dashboard', compact('candidate'));
+        return view('auth.register-candidate');
     }
 
-    public function edit()
+    /**
+     * Store a newly created candidate in storage.
+     */
+    public function store(Request $request)
     {
-        $candidate = auth('miss')->user();
-        return view('candidates.edit', compact('candidate'));
-    }
-
-    public function update(Request $request)
-    {
-        $candidate = auth('miss')->user();
-
         $request->validate([
-            'nom' => 'required|string|max:100',
-            'prenom' => 'required|string|max:100',
-            'age' => 'required|integer|min:18|max:30',
-            'pays' => 'required|string|max:100',
-            'telephone' => 'nullable|string|max:20',
-            'bio' => 'nullable|string|max:500',
-            'photo_principale' => 'nullable|image|mimes:jpeg,png,jpg|max:5120'
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'age' => 'required|integer|min:18|max:99',
+            'city' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:20',
+            'email' => 'required|string|email|max:255|unique:misses',
+            'main_photo' => 'required|image|max:5120', // Max 5MB
+            'short_presentation' => 'nullable|string|max:500',
         ]);
 
-        $data = $request->only(['nom', 'prenom', 'age', 'pays', 'telephone', 'bio']);
+        $mainPhotoPath = $request->file('main_photo')->store('miss_photos', 'public');
 
-        if ($request->hasFile('photo_principale')) {
-            if ($candidate->photo_principale) {
-                Storage::disk('public')->delete($candidate->photo_principale);
-            }
-            $data['photo_principale'] = $request->file('photo_principale')->store('candidates', 'public');
-        }
+        Miss::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'age' => $request->age,
+            'city' => $request->city,
+            'country' => $request->country,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'main_photo_url' => Storage::url($mainPhotoPath),
+            'short_presentation' => $request->short_presentation,
+            'status' => 'pending', // New candidates are pending by default
+        ]);
 
-        $candidate->update($data);
-
-        return redirect()->route('dashboard')->with('success', 'Profil mis à jour avec succès');
+        return redirect()->route('home')->with('success', 'Votre candidature a été soumise avec succès et est en attente de validation.');
     }
 }

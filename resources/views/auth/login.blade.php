@@ -38,11 +38,9 @@
                 'error' => $errors->first('password')
             ])
             
-            @include('components.buttons.primary', [
-                'type' => 'submit'
-            ])
+            <x-buttons.primary type="submit">
                 Se connecter
-            @endcomponent
+            </x-buttons.primary>
         </form>
         
         <div class="mt-6 text-center">

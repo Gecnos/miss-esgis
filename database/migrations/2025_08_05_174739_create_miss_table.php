@@ -6,26 +6,32 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
         Schema::create('misses', function (Blueprint $table) {
             $table->id();
-            $table->string('nom', 100);
-            $table->string('prenom', 100);
+            $table->string('first_name');
+            $table->string('last_name');
             $table->integer('age');
-            $table->string('pays', 100)->nullable();
-            $table->string('email', 255)->unique();
-            $table->string('telephone', 20)->nullable();
-            $table->text('bio')->nullable();
-            $table->string('photo_principale', 255)->nullable();
-            $table->string('mot_de_passe', 255);
-            $table->enum('statut', ['pending', 'active', 'reject'])->default('pending');
-            $table->timestamp('date_inscription')->useCurrent();
+            $table->string('city');
+            $table->string('country');
+            $table->string('phone')->nullable();
+            $table->string('email')->unique();
+            $table->string('main_photo_url');
+            $table->text('short_presentation')->nullable();
+            $table->enum('status', ['pending', 'active', 'rejected'])->default('pending');
+            $table->integer('total_votes')->default(0);
             $table->timestamps();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('misses');
     }
