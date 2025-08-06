@@ -7,22 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Media extends Model
 {
-    protected $table = 'medias';
-
     use HasFactory;
+
+    protected $table = 'medias';
 
     protected $fillable = [
         'miss_id',
-        'file_url',
+        'url',
         'type',
-        'description',
+        'date_upload',
     ];
 
-    /**
-     * Get the miss that owns the media.
-     */
+    public $timestamps = false;
+
+
     public function miss()
     {
-        return $this->belongsTo(Miss::class);
+        return $this->belongsTo(Miss::class, 'miss_id');
     }
 }

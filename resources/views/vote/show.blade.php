@@ -17,10 +17,10 @@
     <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 max-w-2xl mx-auto">
         <!-- Candidate Info Card -->
         <div class="flex items-center space-x-4 p-4 bg-pink-50 rounded-lg mb-6">
-            <img src="{{ $miss->main_photo_url }}" alt="{{ $miss->full_name }}" class="w-16 h-16 rounded-full object-cover shadow-sm" />
+            <img src="{{ $miss->photo_principale }}" alt="{{ $miss->prenom }} {{ $miss->nom }}" class="w-16 h-16 rounded-full object-cover shadow-sm" />
             <div class="flex-grow">
-                <h3 class="text-xl font-semibold text-text-gray-800">{{ $miss->full_name }}</h3>
-                <p class="text-text-gray-600 text-sm">{{ $miss->city }}, {{ $miss->country }}</p>
+                <h3 class="text-xl font-semibold text-text-gray-800">{{ $miss->prenom }} {{ $miss->nom }}</h3>
+                <p class="text-text-gray-600 text-sm">{{ $miss->ville ?? '' }}, {{ $miss->pays }}</p>
             </div>
             <span class="inline-block bg-bg-pink-200 text-text-pink-800 text-xs font-bold px-3 py-1 rounded-full">Vote</span>
         </div>
@@ -47,42 +47,29 @@
         <!-- Moyen de paiement -->
         <form action="{{ route('vote.process', $miss->id) }}" method="POST">
             @csrf
-            <input type="hidden" name="amount" value="1.00"> {{-- Hardcoded for now, can be dynamic --}}
-            <input type="hidden" name="voter_email" value="test@example.com"> {{-- Placeholder, should be collected from user --}}
-            <input type="hidden" name="voter_phone" value="1234567890"> {{-- Placeholder --}}
+            <input type="hidden" name="amount" value="1.00">
+            <input type="hidden" name="voter_email" value="test@example.com">
+            <input type="hidden" name="voter_phone" value="1234567890">
 
             <h2 class="text-xl font-bold text-text-gray-800 mb-4">Moyen de paiement</h2>
             <div class="space-y-4">
-                <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 has-checked:border-primary-pink has-checked:ring-1 has-checked:ring-primary-pink transition-all duration-200">
+                <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-all duration-200">
                     <input type="radio" name="payment_method" value="mobile_money" class="form-radio h-5 w-5 text-primary-pink" checked>
-                    <img src="/placeholder.svg?height=24&width=24" alt="Mobile Money" class="ml-3 h-6 w-6">
+                    <img src="{{ asset('images/logoMTN.png') }}" alt="Mobile Money" class="ml-3 h-6 w-6">
                     <div class="ml-3">
                         <span class="block text-text-gray-800 font-medium">Mobile Money</span>
                         <span class="block text-text-gray-500 text-sm">Orange Money, MTN Mobile Money</span>
                     </div>
                 </label>
-                <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 has-checked:border-primary-pink has-checked:ring-1 has-checked:ring-primary-pink transition-all duration-200">
+                <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-all duration-200">
                     <input type="radio" name="payment_method" value="credit_card" class="form-radio h-5 w-5 text-primary-pink">
-                    <img src="/placeholder.svg?height=24&width=24" alt="Carte bancaire" class="ml-3 h-6 w-6">
+                    <img src="{{ asset('images/bank.jpg') }}" alt="Carte bancaire" class="ml-3 h-6 w-6">
                     <div class="ml-3">
                         <span class="block text-text-gray-800 font-medium">Carte bancaire</span>
                         <span class="block text-text-gray-500 text-sm">Visa, Mastercard</span>
                     </div>
                 </label>
             </div>
-
-            @error('payment_method')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-            @error('amount')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-            @error('voter_email')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
-            @error('payment')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
 
             <div class="mt-8">
                 <x-buttons.primary-button type="submit" class="w-full">

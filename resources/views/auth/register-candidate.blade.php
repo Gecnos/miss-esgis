@@ -20,17 +20,17 @@
             @csrf
 
             <div>
-                <label for="first_name" class="block text-sm font-medium text-text-gray-700">Prénom *</label>
-                <x-inputs.text-input id="first_name" name="first_name" type="text" class="mt-1 block w-full" placeholder="Votre prénom" required autofocus value="{{ old('first_name') }}" />
-                @error('first_name')
+                <label for="prenom" class="block text-sm font-medium text-text-gray-700">Prénom *</label>
+                <x-inputs.text-input id="prenom" name="prenom" type="text" class="mt-1 block w-full" placeholder="Votre prénom" required autofocus value="{{ old('prenom') }}" />
+                @error('prenom')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <div>
-                <label for="last_name" class="block text-sm font-medium text-text-gray-700">Nom *</label>
-                <x-inputs.text-input id="last_name" name="last_name" type="text" class="mt-1 block w-full" placeholder="Votre nom" required value="{{ old('last_name') }}" />
-                @error('last_name')
+                <label for="nom" class="block text-sm font-medium text-text-gray-700">Nom *</label>
+                <x-inputs.text-input id="nom" name="nom" type="text" class="mt-1 block w-full" placeholder="Votre nom" required value="{{ old('nom') }}" />
+                @error('nom')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
@@ -44,25 +44,17 @@
             </div>
 
             <div>
-                <label for="city" class="block text-sm font-medium text-text-gray-700">Ville *</label>
-                <x-inputs.text-input id="city" name="city" type="text" class="mt-1 block w-full" placeholder="Votre ville" required value="{{ old('city') }}" />
-                @error('city')
+                <label for="pays" class="block text-sm font-medium text-text-gray-700">Pays *</label>
+                <x-inputs.text-input id="pays" name="pays" type="text" class="mt-1 block w-full" placeholder="Votre pays" required value="{{ old('pays') }}" />
+                @error('pays')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <div>
-                <label for="country" class="block text-sm font-medium text-text-gray-700">Pays *</label>
-                <x-inputs.text-input id="country" name="country" type="text" class="mt-1 block w-full" placeholder="Votre pays" required value="{{ old('country') }}" />
-                @error('country')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <label for="phone" class="block text-sm font-medium text-text-gray-700">Téléphone</label>
-                <x-inputs.text-input id="phone" name="phone" type="tel" class="mt-1 block w-full" placeholder="+33 6 12 34 56 78" value="{{ old('phone') }}" />
-                @error('phone')
+                <label for="telephone" class="block text-sm font-medium text-text-gray-700">Téléphone</label>
+                <x-inputs.text-input id="telephone" name="telephone" type="tel" class="mt-1 block w-full" placeholder="+229 61 XX XX XX XX" value="{{ old('telephone') }}" />
+                @error('telephone')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
@@ -76,25 +68,25 @@
             </div>
 
             <div class="md:col-span-2">
-                <label for="main_photo" class="block text-sm font-medium text-text-gray-700">Photo principale *</label>
+                <label for="photo_principale" class="block text-sm font-medium text-text-gray-700">Photo principale *</label>
                 <div class="mt-1 flex items-center space-x-2">
                     <label class="cursor-pointer bg-primary-pink hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-md shadow-sm transition duration-150 ease-in-out">
                         Choisir un fichier
-                        <input id="main_photo" name="main_photo" type="file" class="hidden" accept="image/jpeg,image/png,image/jpg" onchange="document.getElementById('file-name').innerText = this.files[0] ? this.files[0].name : 'Aucun fichier choisi'" required />
+                        <input id="photo_principale" name="photo_principale" type="file" class="hidden" accept="image/jpeg,image/png,image/jpg" onchange="document.getElementById('file-name').innerText = this.files[0] ? this.files[0].name : 'Aucun fichier choisi'" required />
                     </label>
                     <span id="file-name" class="text-text-gray-500">Aucun fichier choisi</span>
                 </div>
                 <p class="text-xs text-text-gray-500 mt-1">Format accepté : JPG, PNG (max 5MB)</p>
-                @error('main_photo')
+                @error('photo_principale')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <div class="md:col-span-2">
-                <label for="short_presentation" class="block text-sm font-medium text-text-gray-700">Présentation courte</label>
-                <textarea id="short_presentation" name="short_presentation" rows="4" class="mt-1 block w-full border-gray-300 focus:border-primary-pink focus:ring-primary-pink rounded-md shadow-sm" placeholder="Parlez-nous de vous, vos passions, vos projets..." maxlength="500">{{ old('short_presentation') }}</textarea>
+                <label for="bio" class="block text-sm font-medium text-text-gray-700">Présentation courte</label>
+                <textarea id="bio" name="bio" rows="4" class="mt-1 block w-full border-gray-300 focus:border-primary-pink focus:ring-primary-pink rounded-md shadow-sm" placeholder="Parlez-nous de vous, vos passions, vos projets..." maxlength="500">{{ old('bio') }}</textarea>
                 <p class="text-xs text-text-gray-500 mt-1 text-right"><span id="char-count">0</span>/500 caractères</p>
-                @error('short_presentation')
+                @error('bio')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
@@ -113,17 +105,19 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const shortPresentation = document.getElementById('short_presentation');
-        const charCount = document.getElementById('char-count');
-
-        if (shortPresentation && charCount) {
-            shortPresentation.addEventListener('input', function() {
-                charCount.innerText = this.value.length;
-            });
-            // Initialize count on load if there's old input
-            charCount.innerText = shortPresentation.value.length;
+    document.getElementById('photo_principale').addEventListener('change', function(e) {
+    if (this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const preview = document.createElement('img');
+            preview.src = e.target.result;
+            preview.classList.add('mt-2', 'rounded-lg', 'shadow');
+            preview.style.maxWidth = '200px';
+            document.getElementById('file-name').after(preview);
         }
-    });
+        reader.readAsDataURL(this.files[0]);
+    }
+});
+
 </script>
 @endsection
