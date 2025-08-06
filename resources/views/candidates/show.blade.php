@@ -31,7 +31,7 @@
             @if($photos->isNotEmpty())
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
                     @foreach($photos as $photo)
-                        <img src="{{ $photo->file_url }}" alt="{{ $miss->prenom }} {{ $miss->nom }} photo" class="w-full h-32 object-cover rounded-lg shadow-sm" />
+                        <img src="{{ $photo->url }}" alt="{{ $miss->prenom }} {{ $miss->nom }} photo" class="w-full h-32 object-cover rounded-lg shadow-sm" />
                     @endforeach
                 </div>
             @else
@@ -46,7 +46,7 @@
             <div class="aspect-w-16 aspect-h-9 w-full">
                 <iframe
                     class="w-full h-full rounded-lg"
-                    src="{{ $video->description }}"
+                    src="{{ $video->url }}"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen

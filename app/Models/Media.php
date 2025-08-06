@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+
 
 class Media extends Model
 {
@@ -25,4 +27,20 @@ class Media extends Model
     {
         return $this->belongsTo(Miss::class, 'miss_id');
     }
+
+    public function getUrlAttribute($value)
+    {
+        if (str_starts_with($value, 'http')) {
+            return $value;
+        }
+
+        // Si le chemin contient déjà "/storage", on le renvoie tel quel
+        if (str_starts_with($value, '/storage')) {
+            return $value;
+        }
+
+        return Storage::url($value);
+    }
+
+
 }
