@@ -65,11 +65,12 @@
     </div>
 
     <!-- Mobile Menu Content -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur-sm pb-4">
-        <nav class="grid grid-cols-2 gap-1" data-selected="true"
-            style="transition: none; cursor: move; width: 687px; transform: translate(19px, 0px); height: 94px;">
+    <div id="mobile-menu" class="hidden md:hidden backdrop-blur-sm pb-4">
+        <nav class="grid grid-cols-2 gap-2" data-selected="true"
+            style="background:transparent; transition: none; cursor: move; width: 90%; transform: translate(25px, 0px); height: 94px;">
             <a href="{{ route('home') }}"
-                class="text-gray-700 hover:text-primary-pink py-2 px-4 rounded-lg w-11/12 text-center bg-gray-100 flex items-center justify-center space-x-2 transition-colors duration-200">
+                class="gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex items-center space-x-2 justify-start"
+                style="border:solid 1px;">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 10 10" enable-background="new 0 0 32 32"
                     xml:space="preserve" width="25" height="25">
@@ -83,17 +84,19 @@
                 <span>Accueil</span>
             </a>
             <a href="{{ route('candidates.index') }}"
-                class="text-gray-700 hover:text-primary-pink py-2 px-4 rounded-lg w-11/12 text-center bg-gray-100 flex items-center justify-center space-x-2 transition-colors duration-200">
-                <svg fill="#000000" width="px" height="20px" viewBox="0 0 0.24 0.24" id="user"
+                class="gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center space-x-2 justify-start"
+                style="border:solid 1px;">
+                <svg fill="#000000" width="20px" height="20px" viewBox="0 0 0.6 0.6" id="user"
                     data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color">
                     <path id="primary"
-                        d="M0.21 0.2a0.02 0.02 0 0 1 -0.02 0.02H0.05a0.02 0.02 0 0 1 -0.02 -0.02 0.06 0.06 0 0 1 0.06 -0.06h0.06a0.06 0.06 0 0 1 0.06 0.06m-0.09 -0.08a0.05 0.05 0 1 0 -0.05 -0.05 0.05 0.05 0 0 0 0.05 0.05"
+                        d="M0.525 0.5a0.05 0.05 0 0 1 -0.05 0.05H0.125a0.05 0.05 0 0 1 -0.05 -0.05 0.15 0.15 0 0 1 0.15 -0.15h0.15a0.15 0.15 0 0 1 0.15 0.15m-0.225 -0.2a0.125 0.125 0 1 0 -0.125 -0.125 0.125 0.125 0 0 0 0.125 0.125"
                         style="fill: rgb(0, 0, 0);" />
                 </svg>
                 <span>Candidates</span>
             </a>
             <a href="{{ route('candidates.create') }}"
-                class="text-gray-700 hover:text-primary-pink py-2 px-4 rounded-lg w-11/12 text-center bg-gray-100 flex items-center justify-center space-x-2 transition-colors duration-200">
+                class="gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center space-x-2 justify-start"
+                style="border:solid 1px;">
                 <svg fill="#000000" width="20px" height="20px" viewBox="0 0 0.6 0.6"
                     xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -102,7 +105,8 @@
                 <span>S'inscrire</span>
             </a>
             <a href="{{ route('home') }}#vote-section"
-                class="text-gray-700 hover:text-primary-pink py-2 px-4 rounded-lg w-11/12 text-center bg-gray-100 flex items-center justify-center space-x-2 transition-colors duration-200">
+                class="gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center space-x-2 justify-start"
+                style="border:solid 1px;">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
