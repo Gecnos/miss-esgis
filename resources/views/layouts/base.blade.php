@@ -26,6 +26,8 @@
         @include('components.footer')
     </div>
 
+    @stack('scripts')
+
     <script>
         // Simple JS for mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
