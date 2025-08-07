@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
+
+
 @section('content')
     <div class="container mx-auto px-4 py-8">
         <a href="{{ route('candidates.show', $miss->id) }}"
@@ -37,31 +39,95 @@
                         <span>Prix du vote</span>
                         <span>100 FCFA</span>
                     </div>
-                    <span>Nombre de votes</span>
-                    <input type="number" name="amount" min="1" value="1"
-                        class="w-16 border rounded px-2 py-1 text-center">
-
+                    <div>
+                        <span>Nombre de votes</span>
+                        <input type="number" id="vote-amount" name="amount" min="1" value="1" class="w-24 border rounded px-2 py-1 text-center">
+                    </div>  
 
                     <div class="flex justify-between font-bold text-lg border-t pt-2 mt-2">
                         <span>Total</span>
-                        <span>100 FCFA</span>
+                        <span id="total-price">100 FCFA</span>
                     </div>
                 </div>
             </div>
 
             <!-- Moyen de paiement -->
-            <form action="{{ route('vote.process', $miss->id) }}" method="POST">
-                @csrf
-                <div class="mt-8">
-                    <x-buttons.primary-button type="submit" class="w-full">
-                        Confirmer le vote
-                    </x-buttons.primary-button>
-                </div>
+            @csrf
+            <div class="mt-8">
+                <x-buttons.primary-button id="pay-button" type="button" class="w-full">
+                    Confirmer le vote
+                </x-buttons.primary-button>
 
-                <p class="text-center text-xs text-text-gray-500 mt-4">
-                    En votant, vous acceptez nos conditions d'utilisation.
-                </p>
-            </form>
+            </div>
+
+            <p class="text-center text-xs text-text-gray-500 mt-4">
+                En votant, vous acceptez nos conditions d'utilisation.
+            </p>
         </div>
     </div>
 @endsection
+@push('scripts')
+<script src="https://cdn.kkiapay.me/k.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const voteAmountInput = document.getElementById('vote-amount');
+        const totalPriceSpan = document.getElementById('total-price');
+        const pricePerVote = 98;
+
+        voteAmountInput.addEventListener('input', function () {
+            let amount = parseInt(this.value);
+            if (isNaN(amount) || amount < 1) {
+                amount = 1;
+                this.value = 1;
+            }
+            const total = amount * pricePerVote;
+            totalPriceSpan.textContent = total + ' FCFA';
+        });
+
+        window.addEventListener('kkiapay.success', function (event) {
+            const amount = parseInt(voteAmountInput.value) || 1;
+            const total = amount * pricePerVote;
+            fetch('{{ route('vote.process', $miss->id) }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    montant: total,
+                    moyen_paiement: 'kkiapay',
+                    email: '', // ajouter email de l'utilisateur ici
+                    numero_telephone: '', // optionnel
+                    transaction_id: event.detail.transactionId,
+                    nombre_de_votes: amount
+                })
+            }).then(res => {
+                if (res.ok) {
+                    window.location.href = '{{ route("vote.success", $miss->id) }}';
+                } else {
+                    alert('Erreur lors de l’enregistrement du vote');
+                }
+            });
+        });
+
+        // Appel Kkiapay au clic
+        const payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function () {
+            const amount = parseInt(voteAmountInput.value) || 1;
+            const totalBrut = amount * pricePerVote;
+            const totalNet = totalBrut * (1 - 0.019);
+
+            openKkiapayWidget({
+                amount: totalNet,
+                key: "b275b1006bdc11f0b3c9717b2ab46090",
+                sandbox: true, // ou false si prod
+                phone: "", // facultatif
+                name: "Miss {{ $miss->prenom }}",
+                email: "", // Tu peux pré-remplir ici ou ajouter un input dans le formulaire
+                callback: '{{ route("vote.success", $miss->id) }}'
+            });
+        });
+    });
+</script>
+
+@endpush
