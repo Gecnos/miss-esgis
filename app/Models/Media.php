@@ -19,6 +19,9 @@ class Media extends Model
         'type',
         'date_upload',
     ];
+    protected $casts = [
+        'date_upload' => 'datetime'
+    ];
 
     public $timestamps = false;
 
