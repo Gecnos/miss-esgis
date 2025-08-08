@@ -9,14 +9,21 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $candidates = Miss::active()
-            ->withCount('votes')
-            ->orderBy('votes_count', 'desc')
-            ->get();
-
-        $topCandidate = $candidates->first();
+        // Total des votes = nombre total d'entrées dans la table votes
         $totalVotes = Vote::count();
 
-        return view('home', compact('candidates', 'topCandidate', 'totalVotes'));
+        // Top Miss par nombre de votes
+        $topMiss = Miss::withCount('votes')
+            ->where('statut', 'active')
+            ->orderByDesc('votes_count')
+            ->first();
+
+        // Toutes les candidates actives triées par nombre de votes
+        $activeMisses = Miss::withCount('votes')
+            ->where('statut', 'active') 
+            ->orderByDesc('votes_count')
+            ->get();
+
+        return view('home', compact('totalVotes', 'topMiss', 'activeMisses'));
     }
 }

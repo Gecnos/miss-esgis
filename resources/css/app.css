@@ -1,9 +1,15 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@source "../**/*.blade.php";
-@source "../**/*.js";
-@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
-@source "../../storage/framework/views/*.php";
+/* Custom styles for radio button checked state */
+input[type="radio"]:checked + img + div {
+    border-color: theme('colors.primary-pink');
+    box-shadow: 0 0 0 1px theme('colors.primary-pink');
+}
 
-
-@plugin "daisyui";
+/* Custom styles for radio button checked state on parent label */
+label.has-checked:has(input[type="radio"]:checked) {
+    border-color: theme('colors.primary-pink');
+    box-shadow: 0 0 0 1px theme('colors.primary-pink');
+}

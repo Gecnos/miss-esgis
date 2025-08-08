@@ -2,48 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Model;
 
-class Miss extends Authenticatable
+class Miss extends Model
 {
     use HasFactory;
-
-    protected $table = 'misses';
 
     protected $fillable = [
         'nom',
         'prenom',
         'age',
         'pays',
-        'email',
         'telephone',
+        'email',
         'bio',
         'photo_principale',
         'mot_de_passe',
-        'statut'
+        'statut',
+        'date_inscription',
     ];
-
-    protected $hidden = [
-        'mot_de_passe',
-    ];
-
-    protected $casts = [
-        'date_inscription' => 'datetime',
-    ];
-
-    public function getAuthPassword()
-    {
-        return $this->mot_de_passe;
-    }
-
-    public function votes(): HasMany
-    {
-        return $this->hasMany(Vote::class, 'miss_id');
-    }
-
-    public function medias(): HasMany
+     public $timestamps = false;
+    /**
+     * Get the medias for the miss.
+     */
+    public function medias()
     {
         return $this->hasMany(Media::class, 'miss_id');
     }
@@ -56,25 +39,23 @@ class Miss extends Authenticatable
         return $this->hasMany(Media::class)->where('type','video');
     }
 
-    public function getVoteCountAttribute()
+    /**
+     * Get the votes for the miss.
+     */
+    public function votes()
     {
-        return $this->votes()->count();
+        return $this->hasMany(Vote::class, 'miss_id');
     }
 
+    // Accessor for full name
     public function getFullNameAttribute()
     {
-        return $this->prenom . ' ' . $this->nom;
+        return "{$this->prenom} {$this->nom}";
     }
 
-    public function getPhotoUrlAttribute()
+    // Accessor for Totalvote
+    public function getTotalVotesAttribute()
     {
-        return $this->photo_principale 
-            ? asset('storage/' . $this->photo_principale)
-            : asset('images/placeholder-avatar.jpg');
-    }
-
-    public function scopeActive($query)
-    {
-        return $query->where('statut', 'active');
+        return $this->votes()->count();
     }
 }

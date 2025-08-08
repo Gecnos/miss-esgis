@@ -18,36 +18,34 @@
     <div class="bg-white rounded-xl shadow-sm p-6">
         <form action="{{ route('login') }}" method="POST">
             @csrf
-            
+
             @include('components.inputs.text', [
-                'label' => 'Email',
+                'label' => 'Adresse email',
                 'required' => true,
                 'name' => 'email',
                 'type' => 'email',
-                'placeholder' => 'votre@email.com',
+                'placeholder' => 'exemple@mail.com',
                 'value' => old('email'),
                 'error' => $errors->first('email')
             ])
-            
+
             @include('components.inputs.text', [
                 'label' => 'Mot de passe',
                 'required' => true,
-                'name' => 'password',
+                'name' => 'mot_de_passe',
                 'type' => 'password',
                 'placeholder' => 'Votre mot de passe',
-                'error' => $errors->first('password')
+                'error' => $errors->first('mot_de_passe')
             ])
-            
-            @include('components.buttons.primary', [
-                'type' => 'submit'
-            ])
+
+            <x-buttons.primary type="submit" class="w-full mt-4">
                 Se connecter
-            @endcomponent
+            </x-buttons.primary>
         </form>
-        
+
         <div class="mt-6 text-center">
             <p class="text-gray-600">
-                Pas encore inscrite ? 
+                Pas encore inscrite ?
                 <a href="{{ route('register') }}" class="text-miss-pink font-medium hover:underline">
                     Devenir candidate
                 </a>

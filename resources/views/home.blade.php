@@ -1,65 +1,56 @@
-@extends('layouts.app')
-
-@section('title', 'Miss Élégance 2024 - Accueil')
+@extends('layouts.base')
 
 @section('content')
-<div class="max-w-md mx-auto px-4 py-6">
-    <!-- Hero Section -->
-    <div class="text-center mb-8">
-        <h1 class="text-4xl font-bold gradient-text mb-4">Miss Élégance 2024</h1>
-        <p class="text-gray-600 mb-6">Découvrez les candidates exceptionnelles et votez pour votre favorite</p>
-        
-        <div class="inline-block bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-medium">
-            {{ $totalVotes }} votes au total
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-text-gray-900 mb-4">Miss Élégance 2024</h1>
+            <p class="text-lg text-text-gray-600 mb-6">
+                Découvrez les candidates exceptionnelles et votez pour votre favorite
+            </p>
+            <div
+                class="inline-block bg-accent-yellow text-text-yellow-900 font-bold py-3 px-6 rounded-full shadow-md text-lg">
+                {{ number_format($totalVotes, 0, ',', ' ') }} votes au total
+            </div>
         </div>
-    </div>
 
-    <!-- Top Candidate -->
-    @if($topCandidate)
-    <div class="bg-gradient-to-r from-pink-50 to-orange-50 rounded-xl p-6 mb-8 border border-pink-100">
-        <div class="flex items-center mb-4">
-            <span class="text-2xl mr-2">👑</span>
-            <h2 class="text-lg font-semibold text-gray-900">Candidate en tête</h2>
-        </div>
-        
-        <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-                <img src="{{ $topCandidate->photo_url }}" 
-                     alt="{{ $topCandidate->full_name }}" 
-                     class="w-16 h-16 rounded-full object-cover">
-                <div>
-                    <h3 class="font-semibold text-gray-900">{{ $topCandidate->full_name }}</h3>
-                    <p class="text-sm text-gray-500">{{ $topCandidate->pays }}</p>
-                    <p class="text-sm font-medium text-miss-pink">{{ $topCandidate->votes_count }} votes</p>
+        @if ($topMiss)
+            <section class="mb-12 border-4 border-primary-pink bg-gradient-pink-light">
+                <h2 class="text-2xl font-bold text-text-gray-800 mb-6 flex items-center justify-center md:justify-start">
+                    👑
+                    Candidate en tête
+                </h2>
+                <div
+                    class="rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-6 ">
+                    <img src="{{ $topMiss->photo_principale }}" alt="{{ $topMiss->prenom }} {{ $topMiss->nom }}"
+                        class="w-32 h-32 rounded-full object-cover shadow-md" />
+                    <div class="text-center md:text-left flex-grow">
+                        <h3 class="text-2xl font-semibold text-text-gray-800">
+                            {{ $topMiss->prenom }} {{ $topMiss->nom }}
+                        </h3>
+                        <p class="text-text-gray-600">{{ $topMiss->pays }}</p>
+                        <p class="text-text-pink-600 font-bold text-lg mt-2">{{ $topMiss->total_votes }} votes</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                        <x-buttons.secondary-button class="flex-1"
+                            onclick="window.location='{{ route('candidates.show', $topMiss->id) }}'">
+                            Voir profil
+                        </x-buttons.secondary-button>
+                        <x-buttons.primary-button class="flex-1"
+                            onclick="window.location='{{ route('vote.show', $topMiss->id) }}'">
+                            Voter maintenant
+                        </x-buttons.primary-button>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="flex space-x-2">
-                <a href="{{ route('candidate.show', $topCandidate->id) }}" 
-                   class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50">
-                    Voir profil
-                </a>
-                <a href="{{ route('vote.show', $topCandidate->id) }}" 
-                   class="px-4 py-2 gradient-bg text-white rounded-lg text-sm hover:opacity-90">
-                    Voter maintenant
-                </a>
-            </div>
-        </div>
-    </div>
-    @endif
+            </section>
+        @endif
 
-    <!-- All Candidates -->
-    <div class="mb-6">
-        <h2 class="text-xl font-semibold text-gray-900 mb-4">Toutes les candidates</h2>
-        
-        <div class="grid grid-cols-1 gap-4">
-            @foreach($candidates as $candidate)
-                @include('components.cards.candidate', [
-                    'candidate' => $candidate,
-                    'isTopCandidate' => $loop->first
-                ])
-            @endforeach
-        </div>
+        <section id="vote-section">
+            <h2 class="text-2xl font-bold text-text-gray-800 mb-6">Toutes les candidates</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach ($activeMisses as $candidate)
+                    <x-cards.candidate-card :candidate="$candidate" />
+                @endforeach
+            </div>
+        </section>
     </div>
-</div>
 @endsection

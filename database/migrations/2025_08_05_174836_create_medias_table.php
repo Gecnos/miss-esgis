@@ -6,19 +6,24 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
         Schema::create('medias', function (Blueprint $table) {
             $table->id();
             $table->foreignId('miss_id')->constrained('misses')->onDelete('cascade');
             $table->enum('type', ['photo', 'video']);
             $table->string('url', 255)->nullable();
-            $table->timestamp('date_upload')->useCurrent();
-            $table->timestamps();
+            $table->dateTime('date_upload')->useCurrent();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('medias');
     }

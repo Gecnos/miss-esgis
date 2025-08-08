@@ -1,113 +1,133 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
-@section('title', 'Finaliser votre vote - Miss Élégance 2024')
+
 
 @section('content')
-<div class="max-w-md mx-auto px-4 py-6">
-    <!-- Back Button -->
-    <div class="mb-6">
-        <a href="{{ route('candidate.show', $candidate->id) }}" class="flex items-center text-gray-600 hover:text-gray-900">
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+    <div class="container mx-auto px-4 py-8">
+        <a href="{{ route('candidates.show', $miss->id) }}"
+            class="inline-flex items-center text-text-gray-600 hover:text-primary-pink mb-6 transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Retour
         </a>
-    </div>
 
-    <div class="text-center mb-8">
-        <h1 class="text-2xl font-bold text-gray-900 mb-2">Finaliser votre vote</h1>
-        <p class="text-gray-600">Confirmez votre choix et procédez au paiement</p>
-    </div>
-
-    <!-- Selected Candidate -->
-    <div class="bg-gradient-to-r from-pink-50 to-orange-50 rounded-xl p-4 mb-6 border border-pink-100">
-        <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <img src="{{ $candidate->photo_url }}" 
-                     alt="{{ $candidate->full_name }}" 
-                     class="w-12 h-12 rounded-full object-cover">
-                <div>
-                    <h3 class="font-semibold text-gray-900">{{ $candidate->full_name }}</h3>
-                    <p class="text-sm text-gray-500">{{ $candidate->pays }}</p>
-                </div>
-            </div>
-            <span class="bg-miss-pink text-white text-sm px-3 py-1 rounded-full">Vote</span>
-        </div>
-    </div>
-
-    <form action="{{ route('vote.process', $candidate->id) }}" method="POST">
-        @csrf
-        
-        <!-- Price Summary -->
-        <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
-            <h2 class="text-lg font-semibold text-gray-900 mb-4">Récapitulatif</h2>
-            
-            <div class="space-y-3">
-                <div class="flex justify-between">
-                    <span class="text-gray-600">Prix du vote</span>
-                    <span class="font-medium">1.00 €</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gray-600">Frais de traitement</span>
-                    <span class="font-medium">0.00 €</span>
-                </div>
-                <hr>
-                <div class="flex justify-between text-lg font-semibold">
-                    <span>Total</span>
-                    <span class="text-miss-pink">1.00 €</span>
-                </div>
-            </div>
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-text-gray-900 mb-4">Finaliser votre vote</h1>
+            <p class="text-lg text-text-gray-600">Confirmez votre choix et procédez au paiement</p>
         </div>
 
-        <!-- Payment Method -->
-        <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
-            <h2 class="text-lg font-semibold text-gray-900 mb-4">Moyen de paiement</h2>
-            
-            <div class="space-y-3">
-                <label class="flex items-center p-4 border-2 border-miss-pink rounded-lg bg-pink-50">
-                    <input type="radio" name="moyen_paiement" value="mobile_money" class="text-miss-pink" checked>
-                    <div class="ml-3 flex items-center">
-                        <div class="w-8 h-8 bg-gray-800 rounded mr-3 flex items-center justify-center">
-                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-medium text-gray-900">Mobile Money</p>
-                            <p class="text-sm text-gray-500">Orange Money, MTN Mobile Money</p>
-                        </div>
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 max-w-2xl mx-auto">
+            <!-- Candidate Info Card -->
+            <div class="flex items-center space-x-4 p-4 bg-pink-50 rounded-lg mb-6">
+                <img src="{{ $miss->photo_principale }}" alt="{{ $miss->prenom }} {{ $miss->nom }}"
+                    class="w-16 h-16 rounded-full object-cover shadow-sm" />
+                <div class="flex-grow">
+                    <h3 class="text-xl font-semibold text-text-gray-800">{{ $miss->prenom }} {{ $miss->nom }}</h3>
+                    <p class="text-text-gray-600 text-sm">{{ $miss->ville ?? '' }}, {{ $miss->pays }}</p>
+                </div>
+                <span
+                    class="inline-block bg-bg-pink-200 text-text-pink-800 text-xs font-bold px-3 py-1 rounded-full">Vote</span>
+            </div>
+
+            <!-- Récapitulatif -->
+            <div class="mb-6">
+                <h2 class="text-xl font-bold text-text-gray-800 mb-4">Récapitulatif</h2>
+                <div class="space-y-2 text-text-gray-700">
+                    <div class="flex justify-between">
+                        <span>Prix du vote</span>
+                        <span>100 FCFA</span>
                     </div>
-                    <svg class="w-5 h-5 text-miss-pink ml-auto" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                </label>
-                
-                <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-gray-300">
-                    <input type="radio" name="moyen_paiement" value="carte_bancaire" class="text-miss-pink">
-                    <div class="ml-3 flex items-center">
-                        <div class="w-8 h-8 bg-yellow-500 rounded mr-3 flex items-center justify-center">
-                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-medium text-gray-900">Carte bancaire</p>
-                            <p class="text-sm text-gray-500">Visa, Mastercard</p>
-                        </div>
-                    </div>
-                </label>
-            </div>
-        </div>
+                    <div>
+                        <span>Nombre de votes</span>
+                        <input type="number" id="vote-amount" name="amount" min="1" value="1" class="w-24 border rounded px-2 py-1 text-center">
+                    </div>  
 
-        @include('components.buttons.primary', [
-            'type' => 'submit'
-        ])
-            Confirmer le vote - 1.00 €
-        @endcomponent
-        
-        <p class="text-xs text-gray-500 text-center mt-4">
-            En votant, vous acceptez nos conditions d'utilisation
-        </p>
-    </form>
-</div>
+                    <div class="flex justify-between font-bold text-lg border-t pt-2 mt-2">
+                        <span>Total</span>
+                        <span id="total-price">100 FCFA</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Moyen de paiement -->
+            @csrf
+            <div class="mt-8">
+                <x-buttons.primary-button id="pay-button" type="button" class="w-full">
+                    Confirmer le vote
+                </x-buttons.primary-button>
+
+            </div>
+
+            <p class="text-center text-xs text-text-gray-500 mt-4">
+                En votant, vous acceptez nos conditions d'utilisation.
+            </p>
+        </div>
+    </div>
 @endsection
+@push('scripts')
+<script src="https://cdn.kkiapay.me/k.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const voteAmountInput = document.getElementById('vote-amount');
+        const totalPriceSpan = document.getElementById('total-price');
+        const pricePerVote = 98;
+
+        voteAmountInput.addEventListener('input', function () {
+            let amount = parseInt(this.value);
+            if (isNaN(amount) || amount < 1) {
+                amount = 1;
+                this.value = 1;
+            }
+            const total = amount * pricePerVote;
+            totalPriceSpan.textContent = total + ' FCFA';
+        });
+
+        window.addEventListener('kkiapay.success', function (event) {
+            const amount = parseInt(voteAmountInput.value) || 1;
+            const total = amount * pricePerVote;
+            fetch('{{ route('vote.process', $miss->id) }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    montant: total,
+                    moyen_paiement: 'kkiapay',
+                    email: '', // ajouter email de l'utilisateur ici
+                    numero_telephone: '', // optionnel
+                    transaction_id: event.detail.transactionId,
+                    nombre_de_votes: amount
+                })
+            }).then(res => {
+                if (res.ok) {
+                    window.location.href = '{{ route("vote.success", $miss->id) }}';
+                } else {
+                    alert('Erreur lors de l’enregistrement du vote');
+                }
+            });
+        });
+
+        // Appel Kkiapay au clic
+        const payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function () {
+            const amount = parseInt(voteAmountInput.value) || 1;
+            const totalBrut = amount * pricePerVote;
+            const totalNet = totalBrut * (1 - 0.019);
+
+            openKkiapayWidget({
+                amount: totalNet,
+                key: "b275b1006bdc11f0b3c9717b2ab46090",
+                sandbox: true, // ou false si prod
+                phone: "", // facultatif
+                name: "Miss {{ $miss->prenom }}",
+                email: "", // Tu peux pré-remplir ici ou ajouter un input dans le formulaire
+                callback: '{{ route("vote.success", $miss->id) }}'
+            });
+        });
+    });
+</script>
+
+@endpush

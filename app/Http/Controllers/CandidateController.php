@@ -8,66 +8,72 @@ use Illuminate\Support\Facades\Storage;
 
 class CandidateController extends Controller
 {
+    /**
+     * Liste toutes les candidates actives.
+     */
     public function index()
     {
-        $candidates = Miss::active()
-            ->withCount('votes')
-            ->orderBy('votes_count', 'desc')
+        $candidates = Miss::where('statut', 'active')
+            ->orderBy('prenom')
             ->get();
 
         return view('candidates.index', compact('candidates'));
     }
 
-    public function show($id)
+    /**
+     * Affiche les détails d'une candidate.
+     */
+    public function show(Miss $miss)
     {
-        $candidate = Miss::active()
-            ->with(['medias', 'votes'])
-            ->withCount('votes')
-            ->findOrFail($id);
-
-        return view('candidates.show', compact('candidate'));
-    }
-
-    public function dashboard()
-    {
-        $candidate = auth('miss')->user();
-        $candidate->load(['votes', 'medias']);
-        $candidate->loadCount('votes');
-
-        return view('candidates.dashboard', compact('candidate'));
-    }
-
-    public function edit()
-    {
-        $candidate = auth('miss')->user();
-        return view('candidates.edit', compact('candidate'));
-    }
-
-    public function update(Request $request)
-    {
-        $candidate = auth('miss')->user();
-
-        $request->validate([
-            'nom' => 'required|string|max:100',
-            'prenom' => 'required|string|max:100',
-            'age' => 'required|integer|min:18|max:30',
-            'pays' => 'required|string|max:100',
-            'telephone' => 'nullable|string|max:20',
-            'bio' => 'nullable|string|max:500',
-            'photo_principale' => 'nullable|image|mimes:jpeg,png,jpg|max:5120'
-        ]);
-
-        $data = $request->only(['nom', 'prenom', 'age', 'pays', 'telephone', 'bio']);
-
-        if ($request->hasFile('photo_principale')) {
-            if ($candidate->photo_principale) {
-                Storage::disk('public')->delete($candidate->photo_principale);
-            }
-            $data['photo_principale'] = $request->file('photo_principale')->store('candidates', 'public');
+        if ($miss->statut !== 'active') {
+            abort(404);
         }
 
-        $candidate->update($data);
+        $photos = $miss->medias()->where('type', 'photo')->get();
+        $video  = $miss->medias()->where('type', 'video')->first();
 
-        return redirect()->route('dashboard')->with('success', 'Profil mis à jour avec succès');
+        return view('candidates.show', compact('miss', 'photos', 'video'));
+    }
+
+    /**
+     * Formulaire d'inscription candidate.
+     */
+    public function create()
+    {
+        return view('auth.register-candidate');
+    }
+
+    /**
+     * Enregistre une nouvelle candidate.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nom'   => 'required|string|max:100',
+            'prenom'=> 'required|string|max:100',
+            'age'   => 'required|integer|min:18|max:99',
+            'pays'  => 'required|string|max:100',
+            'telephone' => 'nullable|string|max:20',
+            'email' => 'required|string|email|max:255|unique:misses,email',
+            'photo_principale' => 'required|image|max:5120',
+            'bio'   => 'nullable|string',
+        ]);
+
+        // Stockage de la photo
+        $photoPath = $request->file('photo_principale')->store('miss_photos', 'public');
+
+        Miss::create([
+            'nom'              => $request->nom,
+            'prenom'           => $request->prenom,
+            'age'              => $request->age,
+            'pays'             => $request->pays,
+            'telephone'        => $request->telephone,
+            'email'            => $request->email,
+            'photo_principale' => Storage::url($photoPath),
+            'bio'              => $request->bio,
+            'statut'           => 'pending',
+        ]);
+
+        return redirect()->route('home')->with('success', 'Votre candidature a été soumise et est en attente de validation.');
     }
 }

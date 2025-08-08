@@ -8,33 +8,62 @@ use Illuminate\Http\Request;
 
 class VoteController extends Controller
 {
-    public function show(Miss $candidate)
+    /**
+     * Page de confirmation du vote.
+     */
+    public function show(Miss $miss)
     {
-        return view('vote.show', compact('candidate'));
+        if ($miss->statut !== 'active') {
+            abort(404);
+        }
+
+        return view('vote.show', compact('miss'));
     }
 
-    public function process(Request $request, Miss $candidate)
+    /**
+     * Traitement du vote et paiement.
+     */
+    public function process(Request $request, Miss $miss)
     {
         $request->validate([
-            'moyen_paiement' => 'required|in:mobile_money,carte_bancaire',
-            'email' => 'nullable|email',
-            'numero_telephone' => 'nullable|string'
+            'email' => 'required|email|max:255',
+            'numero_telephone' => 'nullable|string|max:20',
+            'moyen_paiement' => 'required|string|max:50',
+            'number_of_votes' => 'required|integer|min:1'
         ]);
 
-        Vote::create([
-            'miss_id' => $candidate->id,
-            'moyen_paiement' => $request->moyen_paiement,
-            'montant' => 1.00,
-            'numero_telephone' => $request->numero_telephone,
-            'email' => $request->email,
-            'ip_adresse' => $request->ip()
-        ]);
+        $nombreVotes = $request->input('number_of_votes');
+        $montant = $nombreVotes * 100; // FCFA
 
-        return redirect()->route('vote.success', $candidate);
+        // Simuler un paiement avec Kkiapay (à remplacer)
+        $paymentStatus = 'completed'; // À remplacer plus tard par une vérif avec callback Kkiapay
+        $transactionId = 'TRX_' . uniqid();
+
+        if ($paymentStatus !== 'completed') {
+            return redirect()->back()->withErrors(['payment' => 'Le paiement a échoué.']);
+        }
+
+        // Enregistrer autant de votes que demandé
+        for ($i = 0; $i < $nombreVotes; $i++) {
+            Vote::create([
+                'miss_id'          => $miss->id,
+                'moyen_paiement'   => $request->moyen_paiement,
+                'montant'          => 100, // par vote
+                'numero_telephone' => $request->numero_telephone,
+                'email'            => $request->email,
+                'ip_adresse'       => $request->ip() ?? null,
+                // éventuellement ajouter le $transactionId si tu veux tracer
+            ]);
+        }
+       return redirect()->route('vote.success', $miss->id)
+            ->with('success', 'Votre vote a été enregistré avec succès !');
     }
 
-    public function success(Miss $candidate)
+    /**
+     * Page de succès après vote.
+     */
+    public function success(Miss $miss)
     {
-        return view('vote.success', compact('candidate'));
+        return view('vote.success', compact('miss'));
     }
 }
