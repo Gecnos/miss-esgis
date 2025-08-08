@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Miss;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CandidateSubmitted;
 
 class CandidateController extends Controller
 {
@@ -55,25 +58,35 @@ class CandidateController extends Controller
             'pays'  => 'required|string|max:100',
             'telephone' => 'nullable|string|max:20',
             'email' => 'required|string|email|max:255|unique:misses,email',
+            'password' => 'required|string|min:8|confirmed',
             'photo_principale' => 'required|image|max:5120',
             'bio'   => 'nullable|string',
         ]);
 
         // Stockage de la photo
-        $photoPath = $request->file('photo_principale')->store('miss_photos', 'public');
+        $photoPath = $request->file('photo_principale')->store('media', 'public');
 
-        Miss::create([
+        $miss = Miss::create([
             'nom'              => $request->nom,
             'prenom'           => $request->prenom,
             'age'              => $request->age,
             'pays'             => $request->pays,
             'telephone'        => $request->telephone,
             'email'            => $request->email,
+            'mot_de_passe'     => Hash::make($request->password),
             'photo_principale' => Storage::url($photoPath),
             'bio'              => $request->bio,
             'statut'           => 'pending',
         ]);
 
-        return redirect()->route('home')->with('success', 'Votre candidature a été soumise et est en attente de validation.');
+        // Envoi d'un email de confirmation de réception de la candidature
+        try {
+            Mail::to($miss->email)->send(new CandidateSubmitted($miss));
+        } catch (\Throwable $e) {
+            // Vous pouvez logger l'erreur si nécessaire
+            // logger()->error('Erreur envoi mail candidature: '.$e->getMessage());
+        }
+
+        return redirect()->route('home')->with('success', 'Votre demande a été soumise et est en cours de validation. Veuillez vérifier votre boîte mail pour la suite.');
     }
 }

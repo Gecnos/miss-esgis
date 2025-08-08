@@ -6,6 +6,7 @@ use App\Http\Requests\AdminFilterRequest;
 use App\Http\Requests\MediaFilterRequest;
 use App\Http\Requests\UpdateInfoFilterRequest;
 use App\Http\Requests\UpdateMediaFilterRequest;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Media;
 use App\Models\Miss;
 
@@ -25,7 +26,7 @@ class MissdashController extends Controller
          $candidate=Miss::where('email', $req->validated('email'))->first();
          if($candidate)
          {
-            if ($candidate->mot_de_passe === $req->validated('password') )
+            if (Hash::check($req->validated('password'), $candidate->mot_de_passe))
             {
                 Auth::guard('miss')->login($candidate);
                 //session()->regenerate();
