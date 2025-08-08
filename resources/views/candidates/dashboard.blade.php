@@ -161,7 +161,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
         <h2>Photo de profil</h2>
        
             <div class="image" >
-                <img id="photprofil" src="{{asset('media/'.basename($candidate->photo_principale))}}" alt="photo de {{$candidate->nom}} {{$candidate->prenom}}">
+                <img id="photprofil" src="{{asset('storage/media/'.basename($candidate->photo_principale))}}" alt="photo de {{$candidate->nom}} {{$candidate->prenom}}">
                 <div class="modifbtn">
                     <button id="open-modalphoto" class="modifiermedia" data-miss-id="{{$candidate->id}}">Modifier</button>
                 </div>
@@ -175,7 +175,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
             @foreach ($medias as $media)
                 @if ($media->type ==='photo')
                     <div class="image">
-                        <img src="{{asset('media/'.basename($media->url))}}" alt="photo de {{$candidate->nom}} {{$candidate->prenom}}">
+                        <img src="{{asset('storage/media/'.basename($media->url))}}" alt="photo de {{$candidate->nom}} {{$candidate->prenom}}">
                         <div class="modifbtn">
                             <button id="open-modalphoto" class="modifiermedia" data-media-id="{{$media->id}}">Modifier</button>
                         </div>
@@ -195,7 +195,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
             @foreach ($medias as $media)
                 @if ($media->type ==='video')
                     <video controls>
-                        <source src="{{asset('media/'.basename($media->url))}}" type="video/{{pathinfo(basename($media->url),PATHINFO_EXTENSION)}}">
+                        <source src="{{asset('storage/media/'.basename($media->url))}}" type="video/{{pathinfo(basename($media->url),PATHINFO_EXTENSION)}}">
                         Votre navigateur ne prend pas en charge la lecture de video
                     </video>
                     <div class="modifbtn">
