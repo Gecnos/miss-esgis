@@ -15,7 +15,7 @@ class Media extends Model
         'type',
         'url'
     ];
-
+protected $table = 'medias';
     protected $casts = [
         'date_upload' => 'datetime'
     ];

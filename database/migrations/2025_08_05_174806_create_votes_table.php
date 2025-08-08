@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('miss_id')->constrained('misses')->onDelete('cascade');
+            $table->foreignId('transaction_id')->constrained('transactions')->onDelete('cascade');
             $table->string('moyen_paiement', 50)->nullable();
             $table->decimal('montant', 10, 2)->nullable();
             $table->timestamp('timestamp')->useCurrent();

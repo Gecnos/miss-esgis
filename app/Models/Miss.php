@@ -47,6 +47,14 @@ class Miss extends Authenticatable
     {
         return $this->hasMany(Media::class, 'miss_id');
     }
+      public function photos(): HasMany
+    {
+        return $this->hasMany(Media::class)->where('type','photo');
+    }
+     public function videos(): HasMany
+    {
+        return $this->hasMany(Media::class)->where('type','video');
+    }
 
     public function getVoteCountAttribute()
     {
