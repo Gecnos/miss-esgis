@@ -157,11 +157,11 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
 </div>
 
 <section class="medias">
-    <div class="gallerie">
+    <div class="gallerie" >
         <h2>Photo de profil</h2>
        
-            <div class="image">
-                <img src="{{asset('media/'.basename($candidate->photo_principale))}}" alt="photo de {{$candidate->nom}} {{$candidate->prenom}}">
+            <div class="image" >
+                <img id="photprofil" src="{{asset('media/'.basename($candidate->photo_principale))}}" alt="photo de {{$candidate->nom}} {{$candidate->prenom}}">
                 <div class="modifbtn">
                     <button id="open-modalphoto" class="modifiermedia" data-miss-id="{{$candidate->id}}">Modifier</button>
                 </div>
@@ -218,9 +218,9 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
     <form  id="photo-form" action="/modifiermedia" method="post" enctype="multipart/form-data">
         @csrf
         <div id="infomedia"></div>
-      <input type="file" id="video" name="video" accept="video/*">
+      <input type="file" id="videomod" name="video" accept="video/*">
       <div class="modalviderror"></div>
-      <button type="submit">Envoyer</button>
+      <button type="submit" id="connexion">Envoyer</button>
     </form>
   </div>
 </div>
@@ -236,7 +236,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
         </div>
       <input type="file" id="modphoto" name="photo" accept="photo/*">
       <div class="modalphterror"></div>
-      <button type="submit">Envoyer</button>
+      <button type="submit" id="connexion">Envoyer</button>
     </form>
   </div>
 </div>
@@ -249,17 +249,17 @@ const openModalButton = document.getElementById("open-modal");
 const closeButton = document.getElementsByClassName('close')[0];
 const infomedia = document.getElementById("infomedia")
 
-openModalButton.addEventListener("click", function (){       
+openModalButton?.addEventListener("click", function (){       
     modal.style.display = 'block';
     const mediaid=openModalButton.getAttribute("data-media-id")
     infomedia.innerHTML= `<input type="hidden" name="id" value="${mediaid}">`;
 });
 
-closeButton.addEventListener('click', () => {
+closeButton?.addEventListener('click', () => {
   modal.style.display = 'none';
 });
 
-window.addEventListener('click', (event) => {
+window?.addEventListener('click', (event) => {
   if (event.target === modal) {
     modal.style.display = 'none';
   }
@@ -267,8 +267,8 @@ window.addEventListener('click', (event) => {
 
 
 const photoForm = document.getElementById('photo-form');
-photoForm.addEventListener('submit', (event) => {
-  const videoInput = document.getElementById('video');
+photoForm?.addEventListener('submit', (event) => {
+  const videoInput = document.getElementById('videomod');
   if(videoInput.files.length==0)
   {
      event.preventDefault();
@@ -282,7 +282,7 @@ const openmodalphoto =document.querySelectorAll("#open-modalphoto")
 const closeButton2 = document.getElementsByClassName('close')[1];
 const photoinfo = document.getElementById("photoinfo")
 openmodalphoto.forEach(opmodalphoto=>{
-    opmodalphoto.addEventListener("click", function (){              
+    opmodalphoto?.addEventListener("click", function (){              
     modalphoto.style.display = 'block';
    
      let photoid=opmodalphoto.getAttribute("data-media-id")
@@ -295,11 +295,11 @@ openmodalphoto.forEach(opmodalphoto=>{
         }
 });
 })
-closeButton2.addEventListener('click', () => {
+closeButton2?.addEventListener('click', () => {
   modalphoto.style.display = 'none';
 });
 
-window.addEventListener('click', (event) => {
+window?.addEventListener('click', (event) => {
   if (event.target === modalphoto) {
     modalphoto.style.display = 'none';
   }
@@ -307,7 +307,7 @@ window.addEventListener('click', (event) => {
 
 
 const photoForm2 = document.getElementById('photo-form2');
-photoForm2.addEventListener('submit', (event) => {
+photoForm2?.addEventListener('submit', (event) => {
   const photoInput = document.getElementById('modphoto');
   if(photoInput.files.length==0)
   {
@@ -324,10 +324,10 @@ photoForm2.addEventListener('submit', (event) => {
     let videoerror = document.getElementById("videoerror")
     let photoerror = document.getElementById("photoerror")
     if (button) {
-        button.addEventListener("click",function(e)
+        button?.addEventListener("click",function(e)
     {
-         
-         if((photo && photo.files.length==0) && (video && video.files.length==0)){
+        
+         if((photo && photo.files.length==0) && (video && video.files.length ==0)){
                 e.preventDefault()
         
         if( (photo && photo.files.length==0) )
@@ -353,7 +353,7 @@ photoForm2.addEventListener('submit', (event) => {
     })
     }
     if (photo) {
-        photo.addEventListener('change',()=>
+        photo?.addEventListener('change',()=>
     {
         if(photo && photo.files.length>0)
         {
@@ -366,9 +366,11 @@ photoForm2.addEventListener('submit', (event) => {
         }
     })
     }
+    
     if(video){
-        video.addEventListener('change',()=>
+        video?.addEventListener('change',()=>
     {
+        
         if(video && video.files.length>0)
         {
             spanvideo.innerText ="Video selectionnée"

@@ -36,8 +36,25 @@
   text-decoration: none;
   cursor: pointer;
 }
-
-
+#modal h2 ,#modalphoto h2
+{
+    font-size: large;
+    font-weight: bold;
+}
+#modal input ,#modalphoto input
+{
+    width: 100%;
+}
+#connexion{
+    background: linear-gradient(135deg, #E91E63 0%, #FF6B9D 50%, #FFA726 100%);
+    padding: 1vh 2vw;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 100;
+    font-size: larger;
+    margin-top: 2vh;
+    border-radius: 5px;
+}
 
 #svgmiss
 {
@@ -282,7 +299,7 @@ section{
     display: flex;
     margin-bottom: 5vh;
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: scroll;
     padding: 3vh 3vw;
 }
 
@@ -300,10 +317,13 @@ section{
     flex-direction: column;
     align-items: center;
 }
+#photprofil
+{
+    height:40vh;
+}
 .photos img, .image img
 {
-    min-height: 5vh;
-    max-height: 45vh;
+     height:40vh;
     margin-right: 2vw;
 }
 .video{
@@ -373,6 +393,11 @@ section{
 .detail form button , .modifiermedia
 {
     border: none;
+}
+.photos img, .image img
+{
+    height: 100%;
+    margin-right: 2vw;
 }
 }
 @media screen and (max-width: 425px)  {
