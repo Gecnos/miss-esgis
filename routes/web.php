@@ -27,3 +27,4 @@ Route::post('/register-candidate', [CandidateController::class, 'store'])->name(
 Route::get('/vote/{miss}', [VoteController::class, 'show'])->name('vote.show');
 Route::post('/vote/{miss}/process', [VoteController::class, 'process'])->name('vote.process');
 Route::get('/vote/{miss}/success', [VoteController::class, 'success'])->name('vote.success');
+    
