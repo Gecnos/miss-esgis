@@ -11,7 +11,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
         'miss' => [
             'driver' => 'session',
             'provider' => 'misses',
@@ -22,6 +25,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+         'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
         ],
         
         'misses' => [
@@ -37,7 +44,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
         'misses' => [
             'provider' => 'misses',
             'table' => 'password_reset_tokens',

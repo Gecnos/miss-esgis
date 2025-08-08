@@ -29,28 +29,33 @@ class VoteController extends Controller
             'email' => 'required|email|max:255',
             'numero_telephone' => 'nullable|string|max:20',
             'moyen_paiement' => 'required|string|max:50',
-            'montant' => 'required|numeric|min:1.00',
+            'number_of_votes' => 'required|integer|min:1'
         ]);
 
-        // Simulation du paiement (à remplacer par API réelle)
-        $paymentStatus = 'completed';
+        $nombreVotes = $request->input('number_of_votes');
+        $montant = $nombreVotes * 100; // FCFA
+
+        // Simuler un paiement avec Kkiapay (à remplacer)
+        $paymentStatus = 'completed'; // À remplacer plus tard par une vérif avec callback Kkiapay
         $transactionId = 'TRX_' . uniqid();
 
         if ($paymentStatus !== 'completed') {
             return redirect()->back()->withErrors(['payment' => 'Le paiement a échoué.']);
         }
 
-        // Enregistrement du vote
-        Vote::create([
-            'miss_id'         => $miss->id,
-            'moyen_paiement'  => $request->moyen_paiement,
-            'montant'         => $request->montant,
-            'numero_telephone'=> $request->numero_telephone,
-            'email'           => $request->email,
-            'ip_adresse'      => $request->ip() ?? null,
-        ]);
-
-        return redirect()->route('vote.success', $miss->id)
+        // Enregistrer autant de votes que demandé
+        for ($i = 0; $i < $nombreVotes; $i++) {
+            Vote::create([
+                'miss_id'          => $miss->id,
+                'moyen_paiement'   => $request->moyen_paiement,
+                'montant'          => 100, // par vote
+                'numero_telephone' => $request->numero_telephone,
+                'email'            => $request->email,
+                'ip_adresse'       => $request->ip() ?? null,
+                // éventuellement ajouter le $transactionId si tu veux tracer
+            ]);
+        }
+       return redirect()->route('vote.success', $miss->id)
             ->with('success', 'Votre vote a été enregistré avec succès !');
     }
 

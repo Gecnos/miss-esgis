@@ -46,7 +46,7 @@
             <div class="aspect-w-16 aspect-h-9 w-full">
                 <iframe
                     class="w-full h-full rounded-lg"
-                    src="{{ $video->url }}"
+                    src="{{asset('media/'.basename($video->url))}}"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
