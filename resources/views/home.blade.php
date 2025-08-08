@@ -2,6 +2,13 @@
 
 @section('content')
     <div class="container mx-auto px-4 py-8">
+        @if (session('success'))
+            <div class="mb-6">
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                </div>
+            </div>
+        @endif
         <div class="text-center mb-12">
             <h1 class="text-4xl md:text-5xl font-extrabold text-text-gray-900 mb-4">Miss Élégance 2024</h1>
             <p class="text-lg text-text-gray-600 mb-6">
