@@ -23,7 +23,7 @@ class MediaFilterRequest extends FormRequest
     {
         return [
             //
-            'photo' => 'image|mimes:jpg,jpeg,png,gif|max:2048',
+            'photo' => 'image|mimes:jpg,jpeg,png,gif|max:5048',
             'video' => 'mimes:mp4,avi,mov|max:100000'
         ];
     }

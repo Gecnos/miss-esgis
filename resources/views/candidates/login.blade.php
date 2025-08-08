@@ -1,12 +1,12 @@
 
-@extends('layouts.app')
+@extends('layouts.base')
 @php
 $titre ='Connexion miss';
 
 @endphp
-@vite('resources/css/stylelogin.css')
-@section('title', $titre)
 
+@section('title', $titre)
+@vite('resources/css/stylelogin.css')
 @section('content')
 <div class="flexe">
     <nav class="nav">
@@ -46,7 +46,7 @@ $titre ='Connexion miss';
                     {{$message}}
                 @enderror
             </div>
-            <button type="submit">Se connecter</button>
+            <button type="submit" class="connexion">Se connecter</button>
         </form>
 </div>
 @endsection

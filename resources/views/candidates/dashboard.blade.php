@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.base')
 @php
 $titre ='Dashboard admin - Miss Élégance ' . date('Y');
 
@@ -19,7 +19,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
 <section class="statistique">
     <div id="bloc"> 
         <div class="icon">
-             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+             <svg id="svgmiss" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
             </svg>
         </div>
@@ -30,7 +30,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
     </div>
     <div id="bloc"> 
         <div class="icon">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <svg id="svgmiss" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
             </svg>
         </div> 
@@ -41,7 +41,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
     </div>
     <div id="bloc"> 
         <div class="icon">
-             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+             <svg id="svgmiss" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
             </svg>
         </div> 
@@ -52,7 +52,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
     </div>
      <div id="bloc"> 
         <div class="icon">
-             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+             <svg id="svgmiss" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
             </svg>
         </div> 
@@ -228,7 +228,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
 <div id="modalphoto" class="modalphoto">
   <div class="modal-contentphoto">
     <span class="close">&times;</span>
-    <h2>Ajouter une photo</h2>
+    <h2>Modifier la photo</h2>
     <form id="photo-form2" action="/modifiermedia" method="post" enctype="multipart/form-data">
         @csrf
         <div id="photoinfo">

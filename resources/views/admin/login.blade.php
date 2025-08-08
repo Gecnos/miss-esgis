@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion admin</title>
-  @vite('resources/css/stylelogin.css')
-</head>
-<body class="flex">
+@extends('layouts.base')
+@php
+$titre ='Connexion miss';
+
+@endphp
+
+@section('title', $titre)
+@vite('resources/css/stylelogin.css')
+@section('content')
+<div class="flexe">
         <nav class="nav">
             <div class="logo">Miss Élégance</div>
         </nav>
@@ -44,7 +45,7 @@
                     {{$message}}
                 @enderror
             </div>
-            <button type="submit">Se connecter</button>
+            <button type="submit" class="connexion">Se connecter</button>
         </form>
-    </body>
-</html>
+        </div>
+@endsection
