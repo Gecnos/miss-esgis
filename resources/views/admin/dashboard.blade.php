@@ -79,6 +79,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
 <section class="detail">
     <nav>
         <span class="active" id="Candidates">Candidates</span>
+        <span id="candidatesaprouver">Candidates acceptées</span>
         <span id="Classement">Classement</span>
         <span id="Transactions">Transactions</span>
     </nav>
@@ -108,7 +109,9 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
     const Candidates = document.getElementById("Candidates")
     const Classement = document.getElementById("Classement")
     const Transactions = document.getElementById("Transactions")
+    const candidatesaprouver= document.getElementById("candidatesaprouver")
     const tabStatistique =document.getElementById("tabStatistique")
+    const candidatesapp = @json($candidatesaprouver);
     const candidates=@json($candidates);
     if (candidates.length == 0 )
         {
@@ -124,6 +127,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
         Candidates.className = ""
         Classement.className = "active"
         Transactions.className = ""
+        candidatesaprouver.className=""
         const candidates=@json($candidates);
 
         if (candidates.length ==0 )
@@ -179,6 +183,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
         Candidates.className = "active"
         Classement.className = ""
         Transactions.className = ""
+        candidatesaprouver.className=""
         if (candidates.length == 0 )
         {
             tabStatistique.innerHTML= `<h1>Gestion des candidates</h1>
@@ -189,6 +194,25 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
              tabStatistique.innerHTML =  desinertabCandidat(candidates)
         }
     })
+
+    candidatesaprouver.addEventListener("click",function()
+    {
+        Candidates.className = ""
+        Classement.className = ""
+        Transactions.className = ""
+        candidatesaprouver.className = "active"
+        
+        if (candidatesapp.length == 0 )
+        {
+            tabStatistique.innerHTML= `<h1>Gestion des candidates</h1>
+            <div>Aucune candidate validé</div>
+        `
+        }
+        else{
+             tabStatistique.innerHTML =  desinertabCandidat(candidatesapp)
+        }
+    })
+
     Transactions.addEventListener("click",function()
     {
         Candidates.className = ""
@@ -246,9 +270,10 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
     })
     
     
-    function desinertabCandidat()
+    function desinertabCandidat(listcandidate)
     {
-        const candidates=@json($candidates);
+        
+        const candidates=listcandidate;
         let contenu="";
         let i = 1;
         const tetetab = `
@@ -293,7 +318,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
             }
         contenu +=`
             <tr ${i%2==0 ? 'id="paire"':''}>
-                <td> <strong> ${candidate.nom + candidate.prenom}</strong></td>
+                <td> <strong> ${candidate.nom +" "+ candidate.prenom}</strong></td>
                 <td>${candidate.pays}</td>
                 <td>${candidate.votes_count}</td>
                 <td id="approuvee">${status}</td>

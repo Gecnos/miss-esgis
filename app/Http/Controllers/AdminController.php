@@ -24,8 +24,9 @@ class AdminController extends Controller
         if(Auth::guard('admin')->check())
         {
             $transactions = Transaction::with('miss')->get();
-            $candidates= Miss::withCount('votes')->orderBy('votes_count','desc')->get();
-            return view('admin.dashboard',["candidates"=>$candidates,"transactions"=>$transactions]);
+            $candidates= Miss::withCount('votes')->WhereYear('date_inscription',date('Y'))->orderBy('votes_count','desc')->get();
+            $candidatesaprouver= Miss::withCount('votes')->where('statut','active')->WhereYear('date_inscription',date('Y'))->orderBy('votes_count','desc')->get();
+            return view('admin.dashboard',["candidates"=>$candidates,"transactions"=>$transactions,"candidatesaprouver"=>$candidatesaprouver]);
         }
          return redirect()->route("connexion")->with('error', "Veuillez vous connecter");
         
