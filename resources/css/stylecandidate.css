@@ -394,10 +394,20 @@ section{
 {
     border: none;
 }
+.photos
+{
+    display: flex;
+    flex-direction: column;   
+}
+.image
+{
+     margin-bottom: 5vw;
+}
 .photos img, .image img
 {
-    height: 100%;
-    margin-right: 2vw;
+   height: auto;
+    margin-bottom: 2vw;
+
 }
 }
 @media screen and (max-width: 425px)  {
