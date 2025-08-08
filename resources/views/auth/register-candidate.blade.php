@@ -66,6 +66,22 @@
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-text-gray-700">Mot de passe *</label>
+                <x-inputs.text-input id="password" name="password" type="password" class="mt-1 block w-full" placeholder="Votre mot de passe" required value="{{ old('password') }}" />
+                @error('password')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label for="password_confirmation" class="block text-sm font-medium text-text-gray-700">Confirmation mot de passe *</label>
+                <x-inputs.text-input id="password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" placeholder="Confirmer votre mot de passe" required value="{{ old('password_confirmation') }}" />
+                @error('password_confirmation')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
 
             <div class="md:col-span-2">
                 <label for="photo_principale" class="block text-sm font-medium text-text-gray-700">Photo principale *</label>
