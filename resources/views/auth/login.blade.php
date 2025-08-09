@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
-@section('title', 'Connexion - Miss Élégance 2024')
+@section('title', 'Connexion - Miss ESGIS')
 
 @section('content')
 <div class="max-w-md mx-auto px-4 py-6">
@@ -9,17 +9,30 @@
         <p class="text-gray-600">Accédez à votre espace candidate</p>
     </div>
 
-    @if(session('success'))
-        <div class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg mb-6">
-            {{ session('success') }}
-        </div>
-    @endif
+    @if(session('error'))
+                <div id="showtoast" class="alert alert-danger">{{ session('error') }}</div>
+                  <script>
+
+                setTimeout(()=>
+            {
+               if(document.getElementById('showtoast'))
+                {
+                    document.getElementById('showtoast').style.opacity='0'
+                    setTimeout(()=>
+                {
+                    document.getElementById('showtoast')?.remove()
+                },500)
+                }
+            },3000)
+            </script>
+        @endif
+
 
     <div class="bg-white rounded-xl shadow-sm p-6">
-        <form action="{{ route('login') }}" method="POST">
+        <form action="" method="POST">
             @csrf
 
-            @include('components.inputs.text', [
+            @include('components.inputs.text-input', [
                 'label' => 'Adresse email',
                 'required' => true,
                 'name' => 'email',
@@ -32,15 +45,15 @@
             @include('components.inputs.text', [
                 'label' => 'Mot de passe',
                 'required' => true,
-                'name' => 'mot_de_passe',
+                'name' => 'password',
                 'type' => 'password',
                 'placeholder' => 'Votre mot de passe',
-                'error' => $errors->first('mot_de_passe')
+                'error' => $errors->first('password')
             ])
 
-            <x-buttons.primary type="submit" class="w-full mt-4">
+            <x-buttons.primary-button type="submit" class="w-full mt-4">
                 Se connecter
-            </x-buttons.primary>
+            </x-buttons.primary-button>
         </form>
 
         <div class="mt-6 text-center">

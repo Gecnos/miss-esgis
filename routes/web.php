@@ -23,6 +23,7 @@ Route::get('/candidates/{miss}', [CandidateController::class, 'show'])->name('ca
 // Candidate Registration
 Route::get('/register-candidate', [CandidateController::class, 'create'])->name('candidates.create');
 Route::post('/register-candidate', [CandidateController::class, 'store'])->name('candidates.store');
+Route::post('/logout', [CandidateController::class, 'logout'])->name('logout');
 
 // Voting System
 Route::get('/vote/{miss}', [VoteController::class, 'show'])->name('vote.show');

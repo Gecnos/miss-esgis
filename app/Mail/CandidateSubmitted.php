@@ -27,7 +27,7 @@ class CandidateSubmitted extends Mailable
     public function build(): self
     {
         return $this
-            ->subject('Votre candidature a été reçue - Miss Élégance')
+            ->subject('Votre candidature a été reçue - Miss ESGIS')
             ->view('emails.candidate_submitted')
             ->with([
                 'miss' => $this->miss,

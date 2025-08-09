@@ -4,7 +4,7 @@
 <div class="container mx-auto px-4 py-8">
     <div class="text-center mb-8">
         <h1 class="text-4xl md:text-5xl font-extrabold text-text-gray-900 mb-4">Devenir candidate</h1>
-        <p class="text-lg text-text-gray-600">Rejoignez le concours Miss Élégance 2024</p>
+        <p class="text-lg text-text-gray-600">Rejoignez le concours Miss ESGIS 2024</p>
     </div>
 
     <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 max-w-2xl mx-auto">

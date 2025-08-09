@@ -1,5 +1,5 @@
 @extends('layouts.base')
-
+@vite('resources/css/app.css')
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <a href="{{ route('home') }}" class="inline-flex items-center text-text-gray-600 hover:text-primary-pink mb-6 transition-colors duration-200">
@@ -31,7 +31,7 @@
             @if($photos->isNotEmpty())
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
                     @foreach($photos as $photo)
-                        <img src="{{ asset('storage/media/'.basename($photo->url)) }}" alt="{{ $miss->prenom }} {{ $miss->nom }} photo" class="w-full h-32 object-cover rounded-lg shadow-sm" />
+                        <img src="{{ asset('media/'.basename($photo->url)) }}" alt="{{ $miss->prenom }} {{ $miss->nom }} photo" class="w-full h-full object-cover rounded-lg shadow-sm"/>
                     @endforeach
                 </div>
             @else
@@ -46,7 +46,7 @@
             <div class="aspect-w-16 aspect-h-9 w-full">
                 <iframe
                     class="w-full h-full rounded-lg"
-                    src="{{asset('storage/media/'.basename($video->url))}}"
+                    src="{{asset('media/'.basename($video->url))}}"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
