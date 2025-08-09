@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @php
-$titre ='Dashboard admin - Miss Élégance ' . date('Y');
+$titre ='Dashboard admin - Miss ESGIS ' . date('Y');
 
 @endphp
 @vite('resources/css/styleadmin.css')
@@ -10,15 +10,15 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
 <div class="content">
 <section class="entete">
     <h1>Interface Administrateur</h1>
-    <p>Gestion du concours Miss Élégance {{date('Y')}}</p>
+    <p>Gestion du concours Miss ESGIS {{date('Y')}}</p>
 </section>
 
 <section class="statistique">
-    <div id="bloc"> 
+    <div id="bloc">
         <div class="icon">
             <svg id="svgadmin" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
       <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-</svg>    
+</svg>
         </div>
         <div class="chiffre">
             @if (count($candidates) === 0 ):
@@ -27,14 +27,14 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
             <h3>{{count($candidates)}}</h3>
             <p>Candidates totales</p>
             @endif
-        </div> 
+        </div>
     </div>
-    <div id="bloc"> 
+    <div id="bloc">
         <div class="icon">
            <svg id="svgadmin" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
       <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-</svg>    
-        </div> 
+</svg>
+        </div>
         <div class="chiffre">
             @if (count($candidates) === 0 ):
                 <p>Aucune Candidate inscrite cette année</p>
@@ -42,14 +42,14 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
             <h3>{{$candidates->sum('votes_count')}}</h3>
             <p>Votes totaux</p>
             @endif
-        </div> 
+        </div>
     </div>
-    <div id="bloc"> 
+    <div id="bloc">
         <div class="icon">
             <svg id="svgadmin" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
       <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-</svg>    
-        </div> 
+</svg>
+        </div>
         <div class="chiffre">
             @if (count($candidates) === 0 ):
                 <p>Aucune Candidate inscrite cette année</p>
@@ -57,14 +57,14 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
             <h3>{{$transactions->sum('montant')}}</h3>
             <p>Revenus</p>
             @endif
-        </div> 
+        </div>
     </div>
-    <div id="bloc"> 
+    <div id="bloc">
         <div class="icon">
             <svg id="svgadmin" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
       <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-</svg>    
-        </div> 
+</svg>
+        </div>
         <div class="chiffre">
             @if (count($candidates) === 0 ):
                 <p>Aucune Candidate inscrite cette année</p>
@@ -72,7 +72,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
             <h3>{{count($candidates->where('statut','pending'))}}</h3>
             <p>En attente</p>
             @endif
-        </div> 
+        </div>
     </div>
 </section>
 
@@ -85,7 +85,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
     @if(session('success'))
             <div id="showtoast" style="background-color: #5aeb17ff; color: white; padding: 15px; border-radius: 5px; margin: 10px 0;">{{ session('success') }}</div>
             <script>
-                
+
                 setTimeout(()=>
             {
                if(document.getElementById('showtoast'))
@@ -100,7 +100,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
             </script>
     @endif
     <div id="tabStatistique">
-    
+
     </div>
 </section>
 </div>
@@ -133,9 +133,9 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
         `
         }
         else{
-             
+
         let entete= `
-      
+
         <h1>Classement des candidates</h1>
         <div class="candidate" id="premiere">
                 <div class="presentation">
@@ -207,24 +207,24 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
         let contenu="";
         let i = 1;
         const tetetab = `
-      
+
         <h1>Transactions</h1>
     <table>
         <thead>
             <tr>
                 <th>ID Transaction</t>
-            
+
                 <th>Candidate</t>
-            
+
                 <th>Montant</t>
-            
+
                 <th>Méthode</t>
-            
+
                 <th>Date</t>
             </tr>
         </thead>
-        <tbody>`; 
-        
+        <tbody>`;
+
         for(let transaction of transactions )
         {
         contenu +=`
@@ -240,44 +240,44 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
         const fintab=`</tbody>
     </table>
         `
-        tabStatistique.innerHTML = tetetab +contenu+fintab 
+        tabStatistique.innerHTML = tetetab +contenu+fintab
         }
-            
+
     })
-    
-    
+
+
     function desinertabCandidat()
     {
         const candidates=@json($candidates);
         let contenu="";
         let i = 1;
         const tetetab = `
-      
+
         <h1>Gestion des candidates</h1>
     <table>
         <thead>
             <tr>
                 <th>Nom</t>
-            
+
                 <th>Ville</t>
-            
+
                 <th>Votes</t>
-            
+
                 <th>Statut</t>
-            
+
                 <th>Date inscription</t>
-            
+
                 <th>Actions</t>
             </tr>
         </thead>
-        <tbody>`; 
-        
+        <tbody>`;
+
         for(let candidate of candidates )
         {
-            
+
             let approuveroute = "{{ url('/approuve')}}/:id"
             let rejeteroute = "{{ url('/refuse')}}/:id"
-            
+
             let status=""
             if(candidate.statut=="pending")
             {
@@ -299,7 +299,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
                 <td id="approuvee">${status}</td>
                 <td>${candidate.date_inscription.split('T')[0]}</td>
                 <td>
-                
+
                     <a href="${approuveroute.replace(':id',candidate.id)}">Approuvée</a>
                     <a href="${rejeteroute.replace(':id',candidate.id)}">Refusée</a>
                 </td>
@@ -309,11 +309,11 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
         const fintab=`</tbody>
     </table>
         `
-        tab= tetetab +contenu+fintab 
+        tab= tetetab +contenu+fintab
         return tab
     }
 
 
-   
+
 </script>
 @endsection

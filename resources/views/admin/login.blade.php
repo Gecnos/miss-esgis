@@ -9,13 +9,13 @@ $titre ='Connexion miss';
 @section('content')
 <div class="flexe">
         <nav class="nav">
-            <div class="logo">Miss Élégance</div>
+            <div class="logo">Miss ESGIS</div>
         </nav>
 
         @if(session('error'))
                 <div id="showtoast" class="alert alert-danger">{{ session('error') }}</div>
                   <script>
-                
+
                 setTimeout(()=>
             {
                if(document.getElementById('showtoast'))
