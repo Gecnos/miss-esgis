@@ -17,10 +17,6 @@ return new class extends Migration
             $table->foreignId('transaction_id')->constrained('transactions')->onDelete('cascade');
             $table->string('moyen_paiement', 50)->nullable();
             $table->decimal('montant', 10, 2)->nullable();
-            $table->dateTime('timestamp')->useCurrent();
-            $table->string('numero_telephone', 20)->nullable();
-            $table->string('email', 255)->nullable();
-            $table->string('ip_adresse', 50)->nullable();
         });
 
     }

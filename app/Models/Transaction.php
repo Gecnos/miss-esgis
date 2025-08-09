@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Transaction extends Model
 {
-    //
+    protected $fillable = [
+        'miss_id',
+        'montant',
+        'methode',
+        'reference',
+        'statut',
+    ];
 
     public function miss(): BelongsTo
     {

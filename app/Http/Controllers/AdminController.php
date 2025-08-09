@@ -9,8 +9,11 @@ use App\Models\Transaction;
 use App\Models\Vote;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use App\Mail\CandidatureApprouvee;
+use App\Mail\CandidatureRejetee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -50,6 +53,7 @@ class AdminController extends Controller
         $candidate = Miss::findOrFail($req);
         $candidate->statut="active";
         $candidate->save();
+        Mail::to($candidate->email)->send(new CandidatureApprouvee($candidate));
         return redirect()->route("dashboard")->with('success','Candidature acceptée');
     }
 
@@ -58,6 +62,7 @@ class AdminController extends Controller
         $candidate = Miss::findOrFail($req);
         $candidate->statut="reject";
         $candidate->save();
+        Mail::to($candidate->email)->send(new CandidatureRejetee($candidate));
         return redirect()->route("dashboard")->with('success','Candidature rejetée');
     }
 }
