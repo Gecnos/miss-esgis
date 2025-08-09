@@ -12,12 +12,12 @@
             <h1>Espace Miss - {{ $candidate->nom }} {{ $candidate->prenom }}</h1>
             <p>
                 <span class="rang">#{{ $rang }} @if ($totalcandidates > 0)
-                    sur {{ $totalcandidates }}
-                @endif
+                        sur {{ $totalcandidates }}
+                    @endif
                 </span>
                 <span class="votes"> {{ $candidate->votes_count }} @if ($candidate->votes_count > 1)
-                    votes
-                @else
+                        votes
+                    @else
                         vote
                     @endif
                 </span>
@@ -26,46 +26,29 @@
 
         <section class="statistique">
             <div id="bloc">
-                <div class="icon">
-                    <svg height="50px" width="80px" version="1.1" id="Uploaded to svgrepo.com"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 3.2 3.2"
-                        xml:space="preserve">
-                        <style type="text/css">
-                            .hatch_een {
-                                fill: #265AA5;
-                            }
-
-                            .hatch_twee {
-                                fill: #FFC5BB;
-                            }
-                        </style>
-                        <g>
-                            <path class="hatch_twee"
-                                d="M0.2 2.916v-0.141L0.874 2.1h0.141zM1.916 2.4l0.3 -0.3h-0.141l-0.3 0.3zm0.9 -0.9h-0.141l-0.5 0.5h0.141zm-1.441 0.9h0.141l0.3 -0.3h-0.141zM3.1 1.874 2.974 2H3.1zm-3 -0.058L0.416 1.5H0.274L0.1 1.674zM0.616 2.1H0.474L0.2 2.374v0.141zm0.9 -0.1 0.5 -0.5h-0.141l-0.5 0.5zm-0.7 -0.5H0.674l-0.5 0.5h0.141zM3 2.374 2.274 3.1h0.141L3 2.516zM0.716 2l0.5 -0.5h-0.141l-0.5 0.5zm1.059 0h0.141l0.5 -0.5h-0.141zM3.1 1.5h-0.026l-0.5 0.5h0.141L3.1 1.616zm-0.1 1.274L2.674 3.1h0.141L3 2.916zm-0.8 0V2.8a0.1 0.1 0 0 1 -0.1 0.1h-0.026l-0.2 0.2h0.141L3 2.116V2.1h-0.126zm-1.161 0.103A0.099 0.099 0 0 1 1 2.8v-0.026L0.674 3.1h0.141zM1 2.516V2.5a0.1 0.1 0 0 1 0.1 -0.1h0.016l0.3 -0.3h-0.141l-1 1h0.141zM1.116 2l0.5 -0.5h-0.141l-0.5 0.5zm0.3 0.9h-0.141l-0.2 0.2h0.141zm1.2 -0.8h-0.141l-0.319 0.319c0.026 0.018 0.045 0.047 0.045 0.081v0.016zm-0.8 0.8h-0.141l-0.2 0.2h0.141z" />
-                            <path class="hatch_een"
-                                d="M1.372 1.1a0.05 0.05 0 0 1 -0.033 -0.013l-0.222 -0.2a0.05 0.05 0 1 1 0.067 -0.074l0.191 0.172 0.745 -0.575a0.05 0.05 0 0 1 0.061 0.079l-0.778 0.6a0.05 0.05 0 0 1 -0.03 0.01" />
-                            <g>
-                                <path class="hatch_een"
-                                    d="M3.1 1.4h-0.7V0.2a0.1 0.1 0 0 0 -0.1 -0.1H0.9a0.1 0.1 0 0 0 -0.1 0.1v1.2H0.1a0.1 0.1 0 0 0 -0.1 0.1v0.5a0.1 0.1 0 0 0 0.1 0.1v1a0.1 0.1 0 0 0 0.1 0.1h2.8a0.1 0.1 0 0 0 0.1 -0.1V2.1a0.1 0.1 0 0 0 0.1 -0.1v-0.5a0.1 0.1 0 0 0 -0.1 -0.1M0.9 0.2h1.4v1.2H0.9zm2.1 2.9H0.2V2.1h2.8zm0.1 -1.1H0.1v-0.5h3z" />
-                                <path class="hatch_een"
-                                    d="M1.1 2.9h1a0.1 0.1 0 0 0 0.1 -0.1v-0.3a0.1 0.1 0 0 0 -0.1 -0.1H1.1a0.1 0.1 0 0 0 -0.1 0.1v0.3a0.1 0.1 0 0 0 0.1 0.1m0 -0.4h1v0.3H1.1z" />
-                            </g>
-                        </g>
+                <div class="svgmiss">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-vote w-8 h-8 text-primary">
+                        <path d="m9 12 2 2 4-4"></path>
+                        <path d="M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z"></path>
+                        <path d="M22 19H2"></path>
                     </svg>
                 </div>
                 <div class="chiffre">
                     <h3>{{ $candidate->votes_count }}</h3>
                     <p>{{ $candidate->votes_count }} @if ($candidate->votes_count > 1)
-                        votes
-                    @else
+                            votes
+                        @else
                             vote
                         @endif
                     </p>
                 </div>
             </div>
             <div id="bloc">
-                <div class="icon">
-                    <svg width="50px" height="50px" viewBox="0 0 1.8 1.8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div class=" svgmiss">
+                    <svg width="50px" height="50px" viewBox="0 0 1.8 1.8" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M0.65 1.706H0.15c-0.031 0 -0.056 -0.026 -0.056 -0.056v-0.45c0 -0.114 0.092 -0.206 0.206 -0.206h0.35c0.031 0 0.056 0.026 0.056 0.056v0.6c0 0.031 -0.026 0.056 -0.056 0.056m-0.444 -0.112h0.388v-0.487H0.3c-0.052 0 -0.094 0.042 -0.094 0.094z"
                             fill="#000000" />
@@ -86,42 +69,32 @@
                 </div>
             </div>
             <div id="bloc">
-                <div class="icon">
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" height="50px" viewBox="0 0 7.5 7.5"
-                        enable-background="new 0 0 100 100" xml:space="preserve">
-                        <g>
-                            <path fill="#231F20"
-                                d="M6.99 1.35a0.335 0.335 0 0 0 -0.335 -0.335c-0.017 0 -0.034 0.003 -0.05 0.005V1.012H0.844v0.002A0.335 0.335 0 0 0 0.508 1.35v4.837h0.004c0.019 0.167 0.159 0.298 0.332 0.298v0.002h5.76v-0.007c0.016 0.002 0.033 0.005 0.05 0.005 0.172 0 0.313 -0.131 0.332 -0.298h0.006V1.35zm-0.745 4.391H5.43a0.15 0.15 0 0 0 -0.012 -0.033l0.001 -0.001 -1.704 -2.951 -0.001 0a0.23 0.23 0 0 0 -0.207 -0.131 0.231 0.231 0 0 0 -0.211 0.137L2.163 4.726l-0.278 -0.481 0 0a0.121 0.121 0 0 0 -0.109 -0.069c-0.049 0 -0.092 0.03 -0.111 0.072l-0.409 0.709V1.761h4.99z" />
-                            <path fill="#231F20" cx="68.122" cy="38.584" r="10.1"
-                                d="M5.867 2.894A0.757 0.757 0 0 1 5.109 3.651A0.757 0.757 0 0 1 4.352 2.894A0.757 0.757 0 0 1 5.867 2.894z" />
-                        </g>
-                    </svg>
+                <div class="svgmiss">
+                    <link rel="stylesheet"
+                        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0&icon_names=photo" />
+                    <span class="material-symbols-outlined">photo</span>
                 </div>
                 <div class="chiffre">
                     <h3>{{ $candidate->photos_count }}</h3>
                     <p>{{ $candidate->photos_count }} @if ($candidate->photos_count > 1)
-                        photos
-                    @else
-                        photo
-                    @endif
+                            photos
+                        @else
+                            photo
+                        @endif
                     </p>
                 </div>
             </div>
             <div id="bloc">
-                <div class="icon">
-                    <svg width="50px" height="50px" viewBox="0 0 1.125 1.125" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M0.357 0.234A2.475 2.475 0 0 1 0.563 0.225c0.07 0 0.14 0.004 0.205 0.009 0.078 0.007 0.129 0.011 0.168 0.02 0.035 0.008 0.055 0.019 0.072 0.037 0.002 0.002 0.004 0.005 0.006 0.007 0.015 0.017 0.025 0.039 0.03 0.08 0.006 0.044 0.006 0.101 0.006 0.187 0 0.085 0 0.141 -0.006 0.184 -0.006 0.04 -0.015 0.062 -0.03 0.079l-0.006 0.007c-0.017 0.018 -0.037 0.028 -0.071 0.037 -0.038 0.009 -0.088 0.013 -0.165 0.02 -0.065 0.005 -0.136 0.009 -0.209 0.009s-0.144 -0.004 -0.209 -0.009c-0.077 -0.006 -0.127 -0.011 -0.165 -0.02 -0.034 -0.008 -0.054 -0.019 -0.071 -0.037l-0.006 -0.007c-0.015 -0.017 -0.025 -0.039 -0.03 -0.079C0.075 0.706 0.075 0.649 0.075 0.564c0 -0.086 0 -0.143 0.006 -0.187 0.006 -0.041 0.015 -0.062 0.03 -0.08 0.002 -0.002 0.004 -0.005 0.006 -0.007 0.017 -0.017 0.037 -0.028 0.072 -0.037 0.039 -0.009 0.089 -0.014 0.168 -0.02M0 0.564c0 -0.168 0 -0.252 0.055 -0.316 0.003 -0.003 0.006 -0.007 0.009 -0.01 0.058 -0.06 0.135 -0.066 0.287 -0.079C0.418 0.154 0.49 0.15 0.563 0.15s0.145 0.004 0.211 0.009c0.152 0.013 0.228 0.019 0.287 0.079 0.003 0.003 0.007 0.007 0.009 0.01 0.055 0.063 0.055 0.147 0.055 0.316 0 0.166 0 0.249 -0.055 0.313a0.225 0.225 0 0 1 -0.009 0.01c-0.059 0.06 -0.133 0.066 -0.283 0.079C0.711 0.971 0.638 0.975 0.563 0.975s-0.148 -0.004 -0.215 -0.009c-0.15 -0.012 -0.224 -0.019 -0.283 -0.079a0.225 0.225 0 0 1 -0.009 -0.01C0 0.814 0 0.731 0 0.564m0.394 -0.161a0.019 0.019 0 0 1 0.026 -0.017l0.362 0.159c0.015 0.007 0.015 0.028 0 0.034L0.42 0.738a0.019 0.019 0 0 1 -0.026 -0.017z"
-                            fill="#000000" />
-                    </svg>
+                <div class="svgmiss">
+                    <link rel="stylesheet"
+                        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0&icon_names=video_library" />
+                    <span class="material-symbols-outlined">video_library</span>
                 </div>
                 <div class="chiffre">
                     <h3>{{ $candidate->videos_count }}</h3>
                     <p>{{ $candidate->videos_count }} @if ($candidate->videos_count > 1)
-                        videos
-                    @else
+                            videos
+                        @else
                             video
                         @endif
                     </p>
@@ -180,7 +153,8 @@
                     <h2>Informations du profil</h2>
                     <div>
                         <label for="nom">Nom</label>
-                        <input type="text" name="nom" id="nom" value="{{ @old('nom', $candidate->nom ?? '') }}">
+                        <input type="text" name="nom" id="nom"
+                            value="{{ @old('nom', $candidate->nom ?? '') }}">
                         <div class="error">
                             @error('nom')
                                 {{ $message }}
@@ -189,7 +163,8 @@
                     </div>
                     <div>
                         <label for="prenom">Prenom</label>
-                        <input type="text" name="prenom" id="prenom" value="{{ @old('prenom', $candidate->prenom ?? '') }}">
+                        <input type="text" name="prenom" id="prenom"
+                            value="{{ @old('prenom', $candidate->prenom ?? '') }}">
                         <div class="error">
                             @error('prenom')
                                 {{ $message }}
@@ -198,7 +173,8 @@
                     </div>
                     <div>
                         <label for="ville">Ville</label>
-                        <input type="text" name="ville" id="ville" value="{{ @old('ville', $candidate->pays ?? '') }}">
+                        <input type="text" name="ville" id="ville"
+                            value="{{ @old('ville', $candidate->pays ?? '') }}">
                         @error('ville')
                             {{ $message }}
                         @enderror
@@ -211,12 +187,12 @@
                         @enderror
                     </div>
                     <!--<div>
-                        <label for="mail">Mail</label>
-                        <input type="text" name="mail" id="mail" value="{{ @old('mail', $candidate->email ?? '') }}">
-                        @error('mail')
-            {{ $message }}
-        @enderror
-                    </div>-->
+                                    <label for="mail">Mail</label>
+                                    <input type="text" name="mail" id="mail" value="{{ @old('mail', $candidate->email ?? '') }}">
+                                    @error('mail')
+        {{ $message }}
+    @enderror
+                                </div>-->
                     <button type="submit" id="soumis">Sauvegarder les modifications</button>
                 </form>
             </section>
@@ -270,7 +246,8 @@
                                     Votre navigateur ne prend pas en charge la lecture de video
                                 </video>
                                 <div class="modifbtn">
-                                    <button id="open-modal" class="modifiermedia" data-media-id="{{ $media->id }}">Modifier</button>
+                                    <button id="open-modal" class="modifiermedia"
+                                        data-media-id="{{ $media->id }}">Modifier</button>
                                 </div>
                             @endif
                         @endforeach
@@ -319,7 +296,7 @@
         const closeButton = document.getElementsByClassName('close')[0];
         const infomedia = document.getElementById("infomedia")
 
-        openModalButton?.addEventListener("click", function () {
+        openModalButton?.addEventListener("click", function() {
             modal.style.display = 'block';
             const mediaid = openModalButton.getAttribute("data-media-id")
             infomedia.innerHTML = `<input type="hidden" name="id" value="${mediaid}">`;
@@ -351,7 +328,7 @@
         const closeButton2 = document.getElementsByClassName('close')[1];
         const photoinfo = document.getElementById("photoinfo")
         openmodalphoto.forEach(opmodalphoto => {
-            opmodalphoto?.addEventListener("click", function () {
+            opmodalphoto?.addEventListener("click", function() {
                 modalphoto.style.display = 'block';
 
                 let photoid = opmodalphoto.getAttribute("data-media-id")
@@ -391,7 +368,7 @@
         let videoerror = document.getElementById("videoerror")
         let photoerror = document.getElementById("photoerror")
         if (button) {
-            button?.addEventListener("click", function (e) {
+            button?.addEventListener("click", function(e) {
 
                 if ((photo && photo.files.length == 0) && (video && video.files.length == 0)) {
                     e.preventDefault()
