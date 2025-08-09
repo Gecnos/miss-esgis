@@ -4,7 +4,7 @@
 <div class="container mx-auto px-4 py-8">
     <div class="text-center mb-8">
         <h1 class="text-4xl md:text-5xl font-extrabold text-text-gray-900 mb-4">Devenir candidate</h1>
-        <p class="text-lg text-text-gray-600">Rejoignez le concours Miss Élégance 2024</p>
+        <p class="text-lg text-text-gray-600">Rejoignez le concours Miss ESGIS {{ date('Y') }} </p>
     </div>
 
     <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 max-w-2xl mx-auto">
@@ -39,6 +39,13 @@
                 <label for="age" class="block text-sm font-medium text-text-gray-700">Âge *</label>
                 <x-inputs.text-input id="age" name="age" type="number" class="mt-1 block w-full" placeholder="Votre âge" required value="{{ old('age') }}" />
                 @error('age')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
+                <label for="ville" class="block text-sm font-medium text-text-gray-700">Ville *</label>
+                <x-inputs.text-input id="ville" name="ville" type="text" class="mt-1 block w-full" placeholder="Votre ville" required value="{{ old('ville') }}" />
+                @error('ville')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>

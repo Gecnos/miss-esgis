@@ -15,7 +15,7 @@
     <div class="container">
         <h2>Bonjour {{ $miss->prenom }} {{ $miss->nom }},</h2>
         <div class="card">
-            <p>Nous avons bien reçu votre candidature à Miss Élégance.</p>
+            <p>Nous avons bien reçu votre candidature à Miss ESGIS.</p>
             <p>Statut actuel: <strong>En cours de validation</strong>.</p>
             <p>Nous vous recontacterons par email dès que votre demande sera examinée.</p>
             <p>Merci pour votre participation et bonne chance !</p>

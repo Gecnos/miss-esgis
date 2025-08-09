@@ -103,7 +103,7 @@ class MissdashController extends Controller
             $filename ="missprofil".Auth::guard('miss')->user()->id.time().'.'.$req->validated()["photo"]->extension();
             $req->validated()["photo"]->move( public_path('media') , $filename);
             $miss->photo_principale = $filename;
-            unlink("media/".$lastname);
+            unlink("storage/media/".$lastname);
             $miss->save();
             return redirect()->back();
         }
@@ -117,7 +117,7 @@ class MissdashController extends Controller
              $req->validated()["photo"]->move( public_path('media') , $filename);
              $media->url=$filename;
              $media->save();
-             unlink("media/".$lastname);
+             unlink("storage/media/".$lastname);
         } 
           if(isset($req->validated()["video"]))
         {
@@ -125,10 +125,19 @@ class MissdashController extends Controller
              $req->validated()["video"]->move( public_path('media') , $filename);
              $media->url=$filename;
              $media->save();
-             unlink("media/".$lastname);
+             unlink("storage/media/".$lastname);
         } 
         return redirect()->back();
         
     }
+}
+public function logout(Request $request)
+{
+    Auth::logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/');
 }
 }
