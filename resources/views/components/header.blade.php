@@ -1,7 +1,7 @@
 <header class="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-50" style="background:transparent">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between h-16">
         <div class="flex items-center space-x-2">
-            <img src="{{ asset('storage/images/logoMissESGIS.png')}}" alt="Miss ESGIS Logo" class="h-6 w-6" />
+            <img src="{{ asset('storage/images/logoMissESGIS.png')}}" alt="Miss ESGIS Logo" class="h-20 w-20" />
             <a href="{{ route('home') }}">
                 <span class="text-lg font-semibold text-gray-800">Miss ESGIS</span>
             </a>
