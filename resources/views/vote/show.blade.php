@@ -72,7 +72,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const voteAmountInput = document.getElementById('vote-amount');
         const totalPriceSpan = document.getElementById('total-price');
-        const pricePerVote = 98;
+        const pricePerVote = 100;
 
         voteAmountInput.addEventListener('input', function () {
             let amount = parseInt(this.value);
@@ -115,11 +115,11 @@
         payButton.addEventListener('click', function () {
             const amount = parseInt(voteAmountInput.value) || 1;
             const totalBrut = amount * pricePerVote;
-            const totalNet = totalBrut * (1 - 0.019);
+            const totalNet = totalBrut * (1 - 0.02);
 
             openKkiapayWidget({
                 amount: totalNet,
-                key: "b275b1006bdc11f0b3c9717b2ab46090",
+                key: "{{ config('services.kkiapay.public_key') }}",
                 sandbox: true, // ou false si prod
                 phone: "", // facultatif
                 name: "Miss {{ $miss->prenom }}",

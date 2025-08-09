@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('miss_id')->constrained('misses')->onDelete('cascade');
             $table->integer('montant');
-            $table-> enum('methode', ['Mobile_money', 'carte_bancaire']);
+            $table-> enum('methode', ['kkiapay']);
             $table->timestamp('date')->useCurrent();
+            $table->string('reference')->nullable();
+            $table->string('statut')->default('pending');
             $table->timestamps();
         });
     }

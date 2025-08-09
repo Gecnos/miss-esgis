@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\VoteController;
-use App\Http\Controllers\Auth\MissAuthController; // For admin login
+use App\Http\Controllers\Auth\MissAuthController;
 use App\Http\Controllers\MissdashController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
 */
 
 // Public Routes
@@ -30,21 +29,24 @@ Route::get('/vote/{miss}', [VoteController::class, 'show'])->name('vote.show');
 Route::post('/vote/{miss}/process', [VoteController::class, 'process'])->name('vote.process');
 Route::get('/vote/{miss}/success', [VoteController::class, 'success'])->name('vote.success');
 
-// Routes protégées pour les candidates
+
+// Routes protégées candidates (middleware auth:miss)
 Route::middleware('auth:miss')->group(function () {
     Route::get('/dashboard', [CandidateController::class, 'dashboard'])->name('dashboard');
     Route::get('/profile/edit', [CandidateController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [CandidateController::class, 'update'])->name('profile.update');
 });
-// Routes protégées pour les admins
+
+// Routes protégées admins
 Route::controller(AdminController::class)->group(function () {
-    Route::get('/adminloginmaisjustedutextepourplusdesecurité', 'login')->name('connexion');
-    Route::get('/dashboardAdmin','dashboard')->name('dashboard');
-    Route::get('/approuve/{id}','approuve')->name('approuve');
-    Route::get('/refuse/{id}','refuse')->name('refuse');
-    Route::post('/adminloginmaisjustedutextepourplusdesecurité', 'checkLogin');
+    Route::get('/adminloginmaisjustedutextepourplusdesecurite', 'login')->name('connexion');
+    Route::post('/adminloginmaisjustedutextepourplusdesecurite', 'checkLogin');
+    Route::get('/dashboardAdmin', 'dashboard')->name('dashboardAdmin');
+    Route::get('/approuve/{id}', 'approuve')->name('approuve');
+    Route::get('/refuse/{id}', 'refuse')->name('refuse');
 });
-// Routes protégées pour les candidates
+
+// Routes protégées candidates (Missdash)
 Route::controller(MissdashController::class)->group(function () {
     Route::get('/connexion', 'login')->name('MissConnexion');
     Route::post('/connexion', 'checkLogin');
@@ -52,5 +54,4 @@ Route::controller(MissdashController::class)->group(function () {
     Route::post('/addmedia', 'addmedia');
     Route::post('/updateinfo', 'updateinfo');
     Route::post('/modifiermedia', 'modifiermedia');
-    
 });
