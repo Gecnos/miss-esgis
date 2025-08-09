@@ -16,9 +16,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
 <section class="statistique">
     <div id="bloc"> 
         <div class="icon">
-            <svg id="svgadmin" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-      <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-</svg>    
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-8 h-8 text-primary"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>   
         </div>
         <div class="chiffre">
             @if (count($candidates) === 0 ):
@@ -31,9 +29,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
     </div>
     <div id="bloc"> 
         <div class="icon">
-           <svg id="svgadmin" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-      <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-</svg>    
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-vote w-8 h-8 text-primary"><path d="m9 12 2 2 4-4"></path><path d="M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z"></path><path d="M22 19H2"></path></svg>   
         </div> 
         <div class="chiffre">
             @if (count($candidates) === 0 ):
@@ -45,11 +41,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
         </div> 
     </div>
     <div id="bloc"> 
-        <div class="icon">
-            <svg id="svgadmin" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-      <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-</svg>    
-        </div> 
+    <div class="w-8 h-8 bg-secondary rounded-lg flex items-center justify-center">FCFA</div> 
         <div class="chiffre">
             @if (count($candidates) === 0 ):
                 <p>Aucune Candidate inscrite cette année</p>
@@ -61,9 +53,7 @@ $titre ='Dashboard admin - Miss Élégance ' . date('Y');
     </div>
     <div id="bloc"> 
         <div class="icon">
-            <svg id="svgadmin" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-      <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-</svg>    
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user w-8 h-8 text-orange-500"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>   
         </div> 
         <div class="chiffre">
             @if (count($candidates) === 0 ):
