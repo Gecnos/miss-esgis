@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
-class AdminSeeder extends Seeder
+class AdminUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
         DB::table('admins')->insert([
             'nom' => 'Super',
             'email' => 'admin@example.com',
-            'password' => Hash::make('password'), // change le mot de passe après
+            'mot_de_passe' => Hash::make('password'), // change le mot de passe après
             'created_at' => now(),
             'updated_at' => now(),
         ]);
