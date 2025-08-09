@@ -54,7 +54,8 @@ class CandidateController extends Controller
         $request->validate([
             'nom'   => 'required|string|max:100',
             'prenom'=> 'required|string|max:100',
-            'age'   => 'required|integer|min:18|max:99',
+            'age'   => 'required|integer|min:16|max:30',
+            'ville'=> 'required|string|max:100',
             'pays'  => 'required|string|max:100',
             'telephone' => 'nullable|string|max:20',
             'email' => 'required|string|email|max:255|unique:misses,email',
@@ -70,7 +71,7 @@ class CandidateController extends Controller
             'nom'              => $request->nom,
             'prenom'           => $request->prenom,
             'age'              => $request->age,
-            'pays'             => $request->pays,
+            'pays'             => $request->ville.', '.$request->pays,
             'telephone'        => $request->telephone,
             'email'            => $request->email,
             'mot_de_passe'     => Hash::make($request->password),
