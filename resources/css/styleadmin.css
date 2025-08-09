@@ -97,6 +97,7 @@
   font-weight: lighter;
   border-radius: 7px;
   padding: 5px 6vw;
+  cursor: pointer;
 }
 .detail .active
 {

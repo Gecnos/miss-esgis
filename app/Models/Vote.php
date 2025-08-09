@@ -11,12 +11,9 @@ class Vote extends Model
 
     protected $fillable = [
         'miss_id',
+        'transaction_id',
         'moyen_paiement',
-        'montant',
-        'timestamp',
-        'numero_telephone',
-        'email',
-        'ip_adresse',
+        'montant'
     ];
     public $timestamps = false;
 

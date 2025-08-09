@@ -9,8 +9,11 @@ use App\Models\Transaction;
 use App\Models\Vote;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use App\Mail\CandidatureApprouvee;
+use App\Mail\CandidatureRejetee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -24,8 +27,9 @@ class AdminController extends Controller
         if(Auth::guard('admin')->check())
         {
             $transactions = Transaction::with('miss')->get();
-            $candidates= Miss::withCount('votes')->orderBy('votes_count','desc')->get();
-            return view('admin.dashboard',["candidates"=>$candidates,"transactions"=>$transactions]);
+            $candidates= Miss::withCount('votes')->WhereYear('date_inscription',date('Y'))->orderBy('votes_count','desc')->get();
+            $candidatesaprouver= Miss::withCount('votes')->where('statut','active')->WhereYear('date_inscription',date('Y'))->orderBy('votes_count','desc')->get();
+            return view('admin.dashboard',["candidates"=>$candidates,"transactions"=>$transactions,"candidatesaprouver"=>$candidatesaprouver]);
         }
          return redirect()->route("connexion")->with('error', "Veuillez vous connecter");
         
@@ -38,7 +42,7 @@ class AdminController extends Controller
             {
                 Auth::guard('admin')->login($admin);
                 //session()->regenerate();
-                return redirect()->route("dashboard");
+                return redirect()->route("dashboardAdmin");
             }
          }
         return redirect()->route("connexion")->with('error', "Identifiant incorrect");
@@ -49,7 +53,8 @@ class AdminController extends Controller
         $candidate = Miss::findOrFail($req);
         $candidate->statut="active";
         $candidate->save();
-        return redirect()->route("dashboard")->with('success','Candidature acceptée');
+        Mail::to($candidate->email)->send(new CandidatureApprouvee($candidate));
+        return redirect()->route("dashboardAdmin")->with('success','Candidature acceptée');
     }
 
       public function refuse( $req)
@@ -57,6 +62,7 @@ class AdminController extends Controller
         $candidate = Miss::findOrFail($req);
         $candidate->statut="reject";
         $candidate->save();
-        return redirect()->route("dashboard")->with('success','Candidature rejetée');
+        Mail::to($candidate->email)->send(new CandidatureRejetee($candidate));
+        return redirect()->route("dashboardAdmin")->with('success','Candidature rejetée');
     }
 }
