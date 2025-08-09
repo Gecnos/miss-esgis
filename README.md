@@ -59,6 +59,11 @@ Lancer les seeders  :
 ```bash
 php artisan db:seed
 ```
+Lancer les liens photos :
+
+```bash
+ php artisan storage:link
+```
 
 ---
 
