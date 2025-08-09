@@ -42,7 +42,7 @@ class AdminController extends Controller
             {
                 Auth::guard('admin')->login($admin);
                 //session()->regenerate();
-                return redirect()->route("dashboard");
+                return redirect()->route("dashboardAdmin");
             }
          }
         return redirect()->route("connexion")->with('error', "Identifiant incorrect");
@@ -54,7 +54,7 @@ class AdminController extends Controller
         $candidate->statut="active";
         $candidate->save();
         Mail::to($candidate->email)->send(new CandidatureApprouvee($candidate));
-        return redirect()->route("dashboard")->with('success','Candidature acceptée');
+        return redirect()->route("dashboardAdmin")->with('success','Candidature acceptée');
     }
 
       public function refuse( $req)
@@ -63,6 +63,6 @@ class AdminController extends Controller
         $candidate->statut="reject";
         $candidate->save();
         Mail::to($candidate->email)->send(new CandidatureRejetee($candidate));
-        return redirect()->route("dashboard")->with('success','Candidature rejetée');
+        return redirect()->route("dashboardAdmin")->with('success','Candidature rejetée');
     }
 }
